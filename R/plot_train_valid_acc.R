@@ -9,7 +9,7 @@
 #' @return A plot
 #' @export
 #' @examples
-#' plot_train_valid_acc(iris$Species)
+#' plot_train_valid_acc("decision tree", train, valid, "depth", c(1, 5, 10, 15, 20))
 plot_train_valid_acc <- function(model_name, train, valid, param_name, param_vec) {
 
 }
