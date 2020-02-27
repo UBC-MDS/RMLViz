@@ -19,6 +19,6 @@ Authors@R:
            role = c("aut"),
            email = "tonyhuang0526ubc@gmail.com")
 Description: The package contains four functions that help visualize machine learning results in R. 
-License: What license it uses
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
