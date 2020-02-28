@@ -1,5 +1,4 @@
 plot_roc <- function(y_label,predict_prob) {
-
   roc(y_label,predict_prob,
       smoothed = TRUE,
       # arguments for ci
