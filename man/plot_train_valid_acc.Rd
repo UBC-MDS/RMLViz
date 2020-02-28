@@ -2,16 +2,28 @@
 % Please edit documentation in R/plot_train_valid_acc.R
 \name{plot_train_valid_acc}
 \alias{plot_train_valid_acc}
-\title{Plot training and validation dataset accuracies}
+\title{plot train/validation accuracies vs. parameter values}
 \usage{
-plot_train_valid_acc(model_name, train, valid, param_name, param_vec)
+plot_train_valid_acc(
+  model_name,
+  X_train,
+  y_train,
+  X_valid,
+  y_valid,
+  param_name,
+  param_vec
+)
 }
 \arguments{
 \item{model_name}{a string of the machine learning model name}
 
-\item{train}{a data frame of the training data}
+\item{X_train}{a data frame of the training dataset without labels}
 
-\item{valid}{a data frame of the validation data}
+\item{y_train}{a data frame of the training labels}
+
+\item{X_valid}{a data frame of the validation dataset without labels}
+
+\item{y_valid}{a data frame of the validation labels}
 
 \item{param_name}{a string of the parameter name}
 
@@ -21,8 +33,11 @@ plot_train_valid_acc(model_name, train, valid, param_name, param_vec)
 A plot
 }
 \description{
-Plot training and validation dataset accuracies
+Takes in a model name, train/validation data sets,
+a parameter name and a vector of parameter values
+to try and then plots train/validation accuracies vs.
+parameter values.
 }
 \examples{
-plot_train_valid_acc("decision tree", train, valid, "depth", c(1, 5, 10, 15, 20))
+plot_train_valid_acc("decision tree", X_train, y_train, X_valid, y_valid, "depth", c(1, 5, 10, 15, 20))
 }
