@@ -1,5 +1,7 @@
-#' Takes in a model name, train/validation data sets, 
-#' a parameter name and a vector of parameter values 
+#' plot train/validation accuracies vs. parameter values
+#'
+#' Takes in a model name, train/validation data sets,
+#' a parameter name and a vector of parameter values
 #' to try and then plots train/validation accuracies vs.
 #' parameter values.
 #'
