@@ -609,7 +609,7 @@ body {
 
 <p>Visualization package for ML models.</p>
 <blockquote>
-<p>This package contains four functions to allow users to conveniently plot various visualizations as well as compare performance of different classifier models. The four functions will perform the following tasks: 1. Compare the performance of various models 2. Plot the confusion matrix based on the input data 3. Plot the ROC curve and calculate the AUC 4. Plot the trained and test accuracy from a fitted model</p>
+<p>This package contains four functions to allow users to conveniently plot various visualizations as well as compare performance of different classifier models. The four functions will perform the following tasks: 1. Compare the performance of various models 2. Plot the confusion matrix based on the input data 3. Plot train/validation accuracies vs. parameter values 4. Plot the ROC curve and calculate the AUC</p>
 </blockquote>
 <table>
 <thead>
@@ -639,7 +639,7 @@ body {
 </table>
 <h2 id="installation">Installation</h2>
 <p>You can install the released version of RMLViz from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;RMLViz&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;RMLViz&quot;</span>)</a></code></pre></div>
 <h2 id="functions">Functions</h2>
 <table>
 <thead>
@@ -666,12 +666,12 @@ body {
 <tr class="odd">
 <td>plot_train_valid_acc</td>
 <td>model_name, X_train, y_train, X_test, y_test, param_name, param_vec</td>
-<td>a plot</td>
+<td>Train/validation accuracies vs. parameter values plot</td>
 <td>Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation accuracies vs. parameter values.</td>
 </tr>
 <tr class="even">
 <td>plot_roc</td>
-<td>model</td>
+<td>model, X_valid, y_valid</td>
 <td>ROC plot</td>
 <td>Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid),plot the ROC curve, the ROC curve also produces AUC score</td>
 </tr>
