@@ -30,8 +30,8 @@ and "help wanted" is open to whoever wants to implement it.
 
 ### Write Documentation
 
-pymlviz could always use more documentation, whether as part of the
-official pymlviz docs, in docstrings, or even on the web in blog posts,
+rmlviz could always use more documentation, whether as part of the
+official rmlviz docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 ### Submit Feedback
