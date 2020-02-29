@@ -44,3 +44,8 @@ install.packages("RMLViz")
 | plot\_roc                | model                                                                      | ROC plot                                                                | Takes in a fitted model, the validation set(X\_valid) and the validation set labels(y\_valid),plot the ROC curve, the ROC curve also produces AUC score                                                      |
 
 ## Example
+
+### Alignment with R Ecosystems
+
+For all of our functions, there are not existing packages that implement the exact same functionality in R. Most of these functions helps to show insights about machine learning models conveniently.
+
