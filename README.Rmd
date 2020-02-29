@@ -18,7 +18,20 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of RMLViz is to ...
+Visualization package for ML models. 
+
+> This package contains four functions to allow users to conveniently plot various visualizations as well as compare performance of different classifier models. The four functions will perform the following tasks: 
+> 1.  Compare the performance of various models 
+> 2.  Plot the confusion matrix based on the input data
+> 3.  Plot the ROC curve and calculate the AUC 
+> 4.  Plot the trained and test accuracy from a fitted model
+
+|Contributors|GitHub Handle|
+|------------|-------------|
+|Anas Muhammad| [anasm-17](https://github.com/anasm-17)|
+|Tao Huang| [taohuang-ubc](https://github.com/taohuang-ubc)|
+|Fanli Zhou| [flizhou](https://github.com/flizhou)|
+|Mike Chen| [miketianchen](https://github.com/miketianchen)|
 
 ## Installation
 
@@ -28,27 +41,16 @@ You can install the released version of RMLViz from [CRAN](https://CRAN.R-projec
 install.packages("RMLViz")
 ```
 
+## Functions
+
+| Function Name | Input | Output | Description |
+|-------------|-----|------|-----------|
+|model_comparison_table| List of model, X_train, y_train, X_test, y_test, scoring option | Dataframe of model score| Takes in a list of models and the train test data then outputs a table comparing the scores for different models.|
+|confusion_matrix | Model, X_train, y_train, X_test, y_test, predicted_y  | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc)| Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced.|
+|plot_train_valid_acc| model_name, X_train, y_train, X_test, y_test, param_name, param_vec | a plot | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation accuracies vs. parameter values.|
+|plot_roc|model |ROC plot| Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid),plot the ROC curve, the ROC curve also produces AUC score|
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
 
-```{r example}
-library(RMLViz)
-## basic example code
-```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!

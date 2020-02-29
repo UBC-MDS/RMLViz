@@ -7,46 +7,40 @@
 
 <!-- badges: end -->
 
-The goal of RMLViz is to …
+Visualization package for ML models.
+
+> This package contains four functions to allow users to conveniently
+> plot various visualizations as well as compare performance of
+> different classifier models. The four functions will perform the
+> following tasks: 1. Compare the performance of various models 2. Plot
+> the confusion matrix based on the input data 3. Plot the ROC curve and
+> calculate the AUC 4. Plot the trained and test accuracy from a fitted
+> model
+
+| Contributors  | GitHub Handle                                   |
+| ------------- | ----------------------------------------------- |
+| Anas Muhammad | [anasm-17](https://github.com/anasm-17)         |
+| Tao Huang     | [taohuang-ubc](https://github.com/taohuang-ubc) |
+| Fanli Zhou    | [flizhou](https://github.com/flizhou)           |
+| Mike Chen     | [miketianchen](https://github.com/miketianchen) |
 
 ## Installation
 
 You can install the released version of RMLViz from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://CRAN.R-project.org)
+with:
 
 ``` r
 install.packages("RMLViz")
 ```
 
+## Functions
+
+| Function Name            | Input                                                                      | Output                                                                  | Description                                                                                                                                                                                                  |
+| ------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| model\_comparison\_table | List of model, X\_train, y\_train, X\_test, y\_test, scoring option        | Dataframe of model score                                                | Takes in a list of models and the train test data then outputs a table comparing the scores for different models.                                                                                            |
+| confusion\_matrix        | Model, X\_train, y\_train, X\_test, y\_test, predicted\_y                  | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc) | Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted\_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced. |
+| plot\_train\_valid\_acc  | model\_name, X\_train, y\_train, X\_test, y\_test, param\_name, param\_vec | a plot                                                                  | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation accuracies vs. parameter values.                                 |
+| plot\_roc                | model                                                                      | ROC plot                                                                | Takes in a fitted model, the validation set(X\_valid) and the validation set labels(y\_valid),plot the ROC curve, the ROC curve also produces AUC score                                                      |
+
 ## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(RMLViz)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
