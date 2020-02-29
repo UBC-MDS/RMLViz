@@ -12,10 +12,15 @@ Visualization package for ML models.
 > This package contains four functions to allow users to conveniently
 > plot various visualizations as well as compare performance of
 > different classifier models. The four functions will perform the
-> following tasks: 1. Compare the performance of various models 2. Plot
-> the confusion matrix based on the input data 3. Plot train/validation
-> accuracies vs. parameter values 4. Plot the ROC curve and calculate
-> the AUC
+> following tasks:
+> 
+> 1.  Compare the performance of various models
+> 
+> 2.  Plot the confusion matrix based on the input data
+> 
+> 3.  Plot train/validation accuracies vs. parameter values
+> 
+> 4.  Plot the ROC curve and calculate the AUC
 
 | Contributors  | GitHub Handle                                   |
 | ------------- | ----------------------------------------------- |
