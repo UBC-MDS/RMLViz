@@ -47,10 +47,5 @@ install.packages("RMLViz")
 
 ### Alignment with R Ecosystems
 
-For some of our functions, there are not existing packages that implement the exact same functionality in R. Most of these functions helps to show insights about machine learning models conveniently.
+For all of our functions, there are not existing packages that implement the exact same functionality in R. Most of these functions helps to show insights about machine learning models conveniently.
 
-The comparisons between new functions and existing functions are:
-
-| New functions | Existing Packages/Functions |
-|-------------|-----|
-|plot_confusion_matrix| [Sklearn's classification_report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html) | 
