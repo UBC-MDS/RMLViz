@@ -9,11 +9,8 @@
 
 Visualization package for ML models.
 
-> This package contains four functions to allow users to conveniently
-> plot various visualizations as well as compare performance of
-> different classifier models. The four functions will perform the
-> following tasks:
-> 
+> This package contains four functions to allow users to conveniently plot various visualizations as well as compare performance of different classifier models. The purpose of this package is to reduce time spent on developing visualizations and comparing models, to speed up the model creation process for data scientists. The four functions will perform the following tasks: 
+
 > 1.  Compare the performance of various models
 > 
 > 2.  Plot the confusion matrix based on the input data
