@@ -44,3 +44,27 @@ If you are proposing a feature:
 * Keep the scope as narrow as possible, to make it easier to implement.
 * Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
+  
+### Get Started!
+Ready to contribute? Here's how to set up `rmlviz` for local development.
+
+First
+
+Fork, then clone the repo:
+```
+git clone https://github.com/UBC-MDS/RMLViz.git
+```
+
+Add upstream:
+```
+git remote add upstream https://github.com/UBC-MDS/RMLViz.git
+```
+
+Merge potential changes in upstream:
+```
+git fetch upstream
+git merge upstream/master
+git push
+```
+
+Then send a pull request! We'll review your changes!
