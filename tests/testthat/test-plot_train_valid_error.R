@@ -10,17 +10,7 @@
 # of parameter values to try and then plots train/validation
 # errors vs. parameter values.
 
-library(tidyverse)
-library(ggplot2)
-library(testthat)
-library(datasets)
-library(caTools)
 data(iris)
-
-#@importFrom testthat test_that
-#@importFrom testthat expect_true
-#@importFrom testthat expect_error
-#@importFrom tibble tibble
 
 # use the iris data for unittest
 set.seed(123)
@@ -116,7 +106,7 @@ test_that("y_valid should be a vector or factor.", {
 test_that("All elements in X_train should be numeric.", {
 
   expect_error(plot_train_valid_error('knn',
-                                      tibble(a = c(1, 2, '3')), y_train,
+                                      tibble::tibble(a = c(1, 2, '3')), y_train,
                                       X_valid, y_valid,
                                       'k', range(1, 50)),
                "Sorry, all elements in X_train should be numeric.")
@@ -135,7 +125,7 @@ test_that("All elements in X_valid should be numeric.", {
 
   expect_error(plot_train_valid_error('knn',
                                       X_train, y_train,
-                                      tibble(a = c(1, 2, '3')), y_valid,
+                                      tibble::tibble(a = c(1, 2, '3')), y_valid,
                                       'k', range(1, 50)),
                "Sorry, all elements in X_valid should be numeric.")
 })
@@ -171,8 +161,8 @@ test_that("All elements in para_vec should be non-negative.", {
 test_that("X_train and y_train should have the same number of rows.", {
 
   expect_error(plot_train_valid_error('knn',
-                                      tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3, 4),
-                                      tibble(a = c(1, 2, 3)), c(1, 2, 3),
+                                      tibble::tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3, 4),
+                                      tibble::tibble(a = c(1, 2, 3)), c(1, 2, 3),
                                       'k', range(1, 50)),
                "Sorry, X_train and y_train should have the same number of rows.")
 })
@@ -180,8 +170,8 @@ test_that("X_train and y_train should have the same number of rows.", {
 test_that("X_valid and y_valid should have the same number of rows.", {
 
   expect_error(plot_train_valid_error('knn',
-                                      tibble(a = c(1, 2, 3)), c(1, 2, 3),
-                                      tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3, 4),
+                                      tibble::tibble(a = c(1, 2, 3)), c(1, 2, 3),
+                                      tibble::tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3, 4),
                                       'k', range(1, 50)),
                "Sorry, X_valid and y_valid should have the same number of rows.")
 })
@@ -189,8 +179,8 @@ test_that("X_valid and y_valid should have the same number of rows.", {
 test_that("X_train and X_valid should have the same number of columns.", {
 
   expect_error(plot_train_valid_error('knn',
-                                      tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3),
-                                      tibble(a = c(1, 2, 3)), c(1, 2, 3),
+                                      tibble::tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3),
+                                      tibble::tibble(a = c(1, 2, 3)), c(1, 2, 3),
                                       'k', range(1, 50)),
                "Sorry, X_train and X_valid should have the same number of columns.")
 })
