@@ -1,4 +1,9 @@
 #' model_comparison_table
+#' Takes in training data, testing data,
+#' with the target as the last column and
+#' fitted models with meaningful names,
+#' then generates a model comparison
+#' table.
 #' @import dplyr
 #' @import caret
 #' @import mlbench
