@@ -153,8 +153,8 @@ plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_vali
   }
 
 
-  plot <- tidyr::gather(df, "dataset", "error", - para) %>%
-    ggplot2::ggplot(ggplot2::aes(para, error, color = dataset)) +
+  df <- tidyr::gather(df, "dataset", "error", - para)
+  ggplot2::ggplot(df, ggplot2::aes(para, error, color = dataset)) +
     ggplot2::geom_line() +
     ggplot2::labs(x = param_name,
                   y = "Error",
@@ -162,6 +162,5 @@ plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_vali
     ggplot2::theme(plot.title = ggplot2::element_text(size=16),
                    axis.title = ggplot2::element_text(size=14),
                    text = ggplot2::element_text(size=13))
-  plot
 }
 
