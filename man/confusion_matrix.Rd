@@ -6,16 +6,8 @@
 visual. If predicted_y array is passed in,other evaluation scoring metrics such as
 Recall, and precision will also be produced}
 \usage{
-confusion_matrix(
-  model,
-  X_train,
-  X_test,
-  y_train,
-  y_test,
-  predicted_y = NULL,
-  labels = NULL,
-  title = NULL
-)
+confusion_matrix(model, X_train, X_test, y_train, y_test,
+  predicted_y = NULL, labels = NULL, title = NULL)
 }
 \arguments{
 \item{model}{trained model}

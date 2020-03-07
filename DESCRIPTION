@@ -23,16 +23,24 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
+Suggests: 
+    testthat (>= 2.1.0)
 Imports: 
-    purrr,
+    dplyr,
+    caret,
+    mlbench,
+    pls,
+    gbm,
+    e1071,
+    caTools,
     tibble,
+    purrr,
+    devtools
+    pROC,
+    plotROC,
     class,
     ggplot2,
     rpart,
-    e1071,
     randomForest,
     testthat,
-    datasets,
-    caTools,
-    pROC,
-    plotROC
+    datasets
