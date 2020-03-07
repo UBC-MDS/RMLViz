@@ -25,3 +25,13 @@ LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0)
+Imports: 
+    dplyr,
+    caret,
+    mlbench,
+    pls,
+    gbm,
+    e1071,
+    caTools,
+    tibble,
+    purrr

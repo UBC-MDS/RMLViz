@@ -4,15 +4,8 @@
 \alias{plot_train_valid_acc}
 \title{plot train/validation accuracies vs. parameter values}
 \usage{
-plot_train_valid_acc(
-  model_name,
-  X_train,
-  y_train,
-  X_valid,
-  y_valid,
-  param_name,
-  param_vec
-)
+plot_train_valid_acc(model_name, X_train, y_train, X_valid, y_valid,
+  param_name, param_vec)
 }
 \arguments{
 \item{model_name}{a string of the machine learning model name}
