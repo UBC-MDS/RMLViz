@@ -3,4 +3,4 @@
 export(confusion_matrix)
 export(modelcomptab)
 export(plot_roc)
-export(plot_train_valid_acc)
+export(plot_train_valid_error)

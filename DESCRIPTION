@@ -24,8 +24,15 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
 Imports: 
+    purrr,
     tibble,
-    pROC,
-    plotROC,
+    class,
     ggplot2,
-    testthat
+    rpart,
+    e1071,
+    randomForest,
+    testthat,
+    datasets,
+    caTools,
+    pROC,
+    plotROC
