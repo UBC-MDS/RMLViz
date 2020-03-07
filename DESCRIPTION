@@ -38,5 +38,9 @@ Imports:
     devtools
     pROC,
     plotROC,
+    class,
     ggplot2,
-    testthat
+    rpart,
+    randomForest,
+    testthat,
+    datasets
