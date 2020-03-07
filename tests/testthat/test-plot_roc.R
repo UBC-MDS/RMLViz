@@ -1,8 +1,3 @@
-library(ggplot2)
-library(plotROC)
-library(pROC)
-library(testthat)
-
 # generate sample data
 set.seed(420)
 num.samples <- 100

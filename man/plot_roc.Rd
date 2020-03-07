@@ -7,9 +7,9 @@
 plot_roc(y_label, predict_proba)
 }
 \arguments{
-\item{y_label}{a vector contains the validation set label}
+\item{y_label}{a numeric vector contains the validation set label, all elements should be either 0 or 1}
 
-\item{predict_proba}{a vector contains the prediction probabilities}
+\item{predict_proba}{a numberic vector contains the prediction probabilities}
 }
 \value{
 A plot

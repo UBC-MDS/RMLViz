@@ -2,8 +2,8 @@
 #'
 #' Takes in a vector of prediction labels and a vector of prediction probabilities.
 #'
-#' @param y_label a vector contains the validation set label
-#' @param predict_proba a vector contains the prediction probabilities
+#' @param y_label a numeric vector contains the validation set label, all elements should be either 0 or 1
+#' @param predict_proba a numberic vector contains the prediction probabilities
 #'
 #' @return A plot
 #' @examples
