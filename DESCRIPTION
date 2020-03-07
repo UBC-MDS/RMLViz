@@ -36,3 +36,7 @@ Imports:
     tibble,
     purrr,
     devtools
+    pROC,
+    plotROC,
+    ggplot2,
+    testthat

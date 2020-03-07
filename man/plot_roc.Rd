@@ -4,12 +4,12 @@
 \alias{plot_roc}
 \title{creates a ROC plot}
 \usage{
-plot_roc(y_label, predict_prob)
+plot_roc(y_label, predict_proba)
 }
 \arguments{
-\item{y_label}{a vector contains the validation set label}
+\item{y_label}{a numeric vector contains the validation set label, all elements should be either 0 or 1}
 
-\item{predict_prob}{a vector contains the prediction probabilities}
+\item{predict_proba}{a numberic vector contains the prediction probabilities}
 }
 \value{
 A plot
@@ -18,5 +18,5 @@ A plot
 Takes in a vector of prediction labels and a vector of prediction probabilities.
 }
 \examples{
-plot_roc(df$labels,df$predictions)
+plot_roc(c(1,0,0,1,1), c(0.5,0.34,0.89,0.12,0.99))
 }
