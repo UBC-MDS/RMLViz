@@ -609,7 +609,15 @@ body {
 
 <p>Visualization package for ML models.</p>
 <blockquote>
-<p>This package contains four functions to allow users to conveniently plot various visualizations as well as compare performance of different classifier models. The four functions will perform the following tasks: 1. Compare the performance of various models 2. Plot the confusion matrix based on the input data 3. Plot the ROC curve and calculate the AUC 4. Plot the trained and test accuracy from a fitted model</p>
+<p>This package contains four functions to allow users to conveniently plot various visualizations as well as compare performance of different classifier models. The purpose of this package is to reduce time spent on developing visualizations and comparing models, to speed up the model creation process for data scientists. The four functions will perform the following tasks:</p>
+</blockquote>
+<blockquote>
+<ol>
+<li><p>Compare the performance of various models</p></li>
+<li><p>Plot the confusion matrix based on the input data</p></li>
+<li><p>Plot train/validation errors vs. parameter values</p></li>
+<li><p>Plot the ROC curve and calculate the AUC</p></li>
+</ol>
 </blockquote>
 <table>
 <thead>
@@ -639,7 +647,7 @@ body {
 </table>
 <h2 id="installation">Installation</h2>
 <p>You can install the released version of RMLViz from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;RMLViz&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;RMLViz&quot;</span>)</a></code></pre></div>
 <h2 id="functions">Functions</h2>
 <table>
 <thead>
@@ -664,20 +672,22 @@ body {
 <td>Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced.</td>
 </tr>
 <tr class="odd">
-<td>plot_train_valid_acc</td>
+<td>plot_train_valid_error</td>
 <td>model_name, X_train, y_train, X_test, y_test, param_name, param_vec</td>
-<td>a plot</td>
-<td>Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation accuracies vs. parameter values.</td>
+<td>Train/validation errors vs. parameter values plot</td>
+<td>Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation errors vs. parameter values.</td>
 </tr>
 <tr class="even">
 <td>plot_roc</td>
-<td>model</td>
+<td>model, X_valid, y_valid</td>
 <td>ROC plot</td>
-<td>Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid),plot the ROC curve, the ROC curve also produces AUC score</td>
+<td>Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid) and plots the ROC curve. The ROC curve also produces AUC score.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="example">Example</h2>
+<h2 id="alignment-with-r-ecosystems">Alignment with R Ecosystems</h2>
+<p>For all of our functions, there are not existing packages that implement the exact same functionality in R. Most of these functions helps to show insights about machine learning models conveniently.</p>
 
 </body>
 </html>
