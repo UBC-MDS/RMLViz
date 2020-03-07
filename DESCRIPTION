@@ -26,6 +26,12 @@ RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0)
 Imports: 
+    caret,
+    dplyr,
+    tidyr,
+    magrittr,
+    ggplot2,
+    broom,
     dplyr,
     caret,
     mlbench,
@@ -35,11 +41,11 @@ Imports:
     caTools,
     tibble,
     purrr,
-    devtools,
     pROC,
     plotROC,
     class,
     ggplot2,
     rpart,
     randomForest,
+    testthat,
     datasets

@@ -2,7 +2,12 @@
 % Please edit documentation in R/model_comparison_table.R
 \name{model_comparison_table}
 \alias{model_comparison_table}
-\title{model_comparison_table}
+\title{model_comparison_table
+Takes in training data, testing data,
+with the target as the last column and
+fitted models with meaningful names,
+then generates a model comparison
+table.}
 \usage{
 model_comparison_table(train_data, test_data, ...)
 }
@@ -18,4 +23,9 @@ tibble of results, allowing you to compare models
 }
 \description{
 model_comparison_table
+Takes in training data, testing data,
+with the target as the last column and
+fitted models with meaningful names,
+then generates a model comparison
+table.
 }

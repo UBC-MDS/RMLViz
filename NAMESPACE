@@ -4,7 +4,7 @@ export(confusion_matrix)
 export(model_comparison_table)
 export(plot_roc)
 export(plot_train_valid_error)
-
 import(caret)
 import(dplyr)
 import(mlbench)
+importFrom(magrittr,"%>%")

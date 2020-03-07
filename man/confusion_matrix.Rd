@@ -6,19 +6,10 @@
 visual. If predicted_y array is passed in,other evaluation scoring metrics such as
 Recall, and precision will also be produced}
 \usage{
-confusion_matrix(model, X_train, X_test, y_train, y_test,
-  predicted_y = NULL, labels = NULL, title = NULL)
+confusion_matrix(actual_y, predicted_y, labels = NULL, title = NULL)
 }
 \arguments{
-\item{model}{trained model}
-
-\item{X_train}{a data frame of the training dataset without labels}
-
-\item{X_test}{a data frame of the validation dataset without labels}
-
-\item{y_train}{a data frame of the training labels}
-
-\item{y_test}{a data frame of the validation labels}
+\item{actual_y}{a data frame of the validation labels}
 
 \item{predicted_y}{a data frame of predicted values with model}
 
@@ -27,13 +18,11 @@ confusion_matrix(model, X_train, X_test, y_train, y_test,
 \item{title}{a string of the confusion matrix label}
 }
 \value{
-A plot
+A plot and a dataframe with scoring metrics
 }
 \description{
-Takes in a trained model with X and y values to produce a confusion matrix
-visual. If predicted_y array is passed in,other evaluation scoring metrics such as
-Recall, and precision will also be produced
+Implementation based on https://stackoverflow.com/a/59119854
 }
 \examples{
-confusion_matrix(svm, X_train, y_train, X_valid, y_valid)
+confusion_matrix(as.factor(c("yes", "no", "yes")), as.factor(c("no", "no", "yes")))
 }
