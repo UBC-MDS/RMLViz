@@ -1,12 +1,12 @@
-library(dplyr)
-library(testthat)
-library(caret)
-library(mlbench)
-library(stats)
-library(e1071)
-library(caTools)
-library(tibble)
-library(purrr)
+require(dplyr)
+require(testthat)
+require(caret)
+require(mlbench)
+require(stats)
+require(e1071)
+require(caTools)
+require(tibble)
+require(purrr)
 ## Regression data, train test split setup
 toy_reg_data <- tibble("x" = rnorm(200)*100,
                        "y" = rnorm(200) *10,

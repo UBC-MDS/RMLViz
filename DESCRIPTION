@@ -34,4 +34,5 @@ Imports:
     e1071,
     caTools,
     tibble,
-    purrr
+    purrr,
+    devtools
