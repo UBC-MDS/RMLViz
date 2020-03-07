@@ -11,20 +11,29 @@
 #'
 #' @return A plot and a dataframe with scoring metrics
 #' @export
+#' @importFrom magrittr %>%
 #'
 #' @examples
-#' confusion_matrix(svm, X_train, y_train, X_valid, y_valid)
+#' confusion_matrix(as.factor(c("yes", "no", "yes")), as.factor(c("no", "no", "yes")))
 confusion_matrix <- function(actual_y, predicted_y, labels = NULL, title = NULL){
 
   if (!is.vector(predicted_y) && !is.factor(predicted_y)){
-    stop("Sorry, y_valid should be a vector or factor.")
+    stop("Sorry, predicted_y should be a vector or factor.")
   }
 
   if (!is.vector(actual_y) && !is.factor(actual_y)){
-    stop("Sorry, y_valid should be a vector or factor.")
+    stop("Sorry, actual_y should be a vector or factor.")
   }
 
-  confusion_matrix <- confusionMatrix(predicted_y, actual_y)
+  if (length(actual_y) != length(predicted_y)){
+    stop("Sorry, predicted_y and actual_y should have the same length.")
+  }
+
+  if (is.null(title)) {
+    title = "Confusion Matrix"
+  }
+
+  confusion_matrix <- caret::confusionMatrix(predicted_y, actual_y)
 
   table <- data.frame(confusion_matrix$table)
 
@@ -32,25 +41,27 @@ confusion_matrix <- function(actual_y, predicted_y, labels = NULL, title = NULL)
 
 
   plot_table <- table %>%
-    mutate(goodbad = ifelse(table$Prediction == table$Reference, "good", "bad")) %>%
-    group_by(Reference) %>%
-    mutate(prop = Freq/sum(Freq))
+    dplyr::mutate(goodbad = ifelse(table$Prediction == table$Reference, "good", "bad")) %>%
+    dplyr::group_by_(~Reference) %>%
+    dplyr::mutate_(prop = ~Freq/sum(Freq))
 
 
 
 
 
-  confusion_plot <- ggplot(data = plot_table, mapping = aes(x = Reference, y = Prediction, fill = goodbad, alpha = prop)) +
-    geom_tile() +
-    geom_text(aes(label = Freq), vjust = .5, fontface  = "bold", alpha = 1) +
-    scale_fill_manual(values = c(good = "green", bad = "red")) +
-    theme_bw() +
-    xlim(rev(levels(table$Reference))) +
-    theme(legend.position = "none")
+  confusion_plot <- ggplot2::ggplot(data = plot_table, mapping = ggplot2::aes_string(x = 'Reference', y = 'Prediction', fill = 'goodbad', alpha = 'prop')) +
+    ggplot2::geom_tile() +
+    ggplot2::geom_text(ggplot2::aes_string(label = 'Freq'), vjust = .5, fontface  = "bold", alpha = 1) +
+    ggplot2::scale_fill_manual(values = c(good = "green", bad = "red")) +
+    ggplot2::theme_bw() +
+    ggplot2::xlim(rev(levels(table$Reference))) +
+    ggplot2::theme(legend.position = "none") +
+    ggplot2::labs(title = title)
 
-  metric_score <- tidy(confusion_matrix$byClass)
+  metric_score <- broom::tidy(confusion_matrix$byClass)
 
   print(confusion_plot)
-
   return(metric_score)
 }
+
+

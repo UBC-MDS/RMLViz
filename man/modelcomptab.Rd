@@ -4,7 +4,8 @@
 \alias{modelcomptab}
 \title{Title}
 \usage{
-modelcomptab(models, X_train, y_train, X_test, y_test, scoring = "default")
+modelcomptab(models, X_train, y_train, X_test, y_test,
+  scoring = "default")
 }
 \arguments{
 \item{models}{list}
@@ -18,9 +19,6 @@ modelcomptab(models, X_train, y_train, X_test, y_test, scoring = "default")
 \item{y_test}{vector}
 
 \item{scoring}{str}
-}
-\value{
-
 }
 \description{
 Title
