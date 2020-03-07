@@ -35,12 +35,11 @@ Imports:
     caTools,
     tibble,
     purrr,
-    devtools
+    devtools,
     pROC,
     plotROC,
     class,
     ggplot2,
     rpart,
     randomForest,
-    testthat,
     datasets
