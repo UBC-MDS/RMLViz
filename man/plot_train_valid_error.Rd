@@ -4,8 +4,15 @@
 \alias{plot_train_valid_error}
 \title{plot train/validation errors vs. parameter values}
 \usage{
-plot_train_valid_error(model_name, X_train, y_train, X_valid, y_valid,
-  param_name, param_vec)
+plot_train_valid_error(
+  model_name,
+  X_train,
+  y_train,
+  X_valid,
+  y_valid,
+  param_name,
+  param_vec
+)
 }
 \arguments{
 \item{model_name}{a string of the machine learning model name.
