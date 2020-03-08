@@ -40,6 +40,11 @@ You can install the released version of RMLViz from
 install.packages("RMLViz")
 ```
 
+And the development version from [GitHub](https://github.com/) with:
+
+    # install.packages("devtools")
+    devtools::install_github("UBC-MDS/RMLViz")
+
 ## Functions
 
 | Function Name             | Input                                                                      | Output                                                                  | Description                                                                                                                                                                                                  |
@@ -59,7 +64,12 @@ insights about machine learning models conveniently.
 
 R version 3.6.1 and R packages:
 
+  - caret
   - dplyr
+  - tidyr
+  - magrittr
+  - ggplot2
+  - broom
   - caret
   - mlbench
   - pls
@@ -68,26 +78,14 @@ R version 3.6.1 and R packages:
   - caTools
   - tibble
   - purrr
-  - devtools
   - pROC
   - plotROC
   - class
   - ggplot2
   - rpart
   - randomForest
+  - testthat
   - datasets
-
-## Installation
-
-You can install the released version of RMLViz from
-[CRAN](https://cran.r-project.org/) with:
-
-    install.packages("RMLViz")
-
-And the development version from [GitHub](https://github.com/) with:
-
-    # install.packages("devtools")
-    devtools::install_github("UBC-MDS/RMLViz")
 
 ## Usage and example
 
@@ -95,76 +93,112 @@ And the development version from [GitHub](https://github.com/) with:
 
 <!-- end list -->
 
-    library(RMLViz)
-    library(mlbench)
-    data(Sonar)
-    
-    toy_classification_data <- select(as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
-    
-    train_ind <- createDataPartition(toy_classification_data$Class, p=0.9, list=F)
-    
-    train_set_cf <- toy_classification_data[train_ind, ]
-    test_set_cf <- toy_classification_data[-train_ind, ]
-    
-    ## classification models setup
-    gbm <- train(Class~., train_set_cf, method="gbm", verbose=F)
-    lm_cf <- train(Class~., train_set_cf, method="LogitBoost", verbose=F)
-    
-    model_comparison_table(train_set_cf, test_set_cf,
-                           gbm_mod=gbm, log_mod = lm_cf)
+``` r
+library(RMLViz)
+library(mlbench)
+data(Sonar)
+
+toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
+
+train_ind <- caret::createDataPartition(toy_classification_data$Class, p=0.9, list=F)
+
+train_set_cf <- toy_classification_data[train_ind, ]
+test_set_cf <- toy_classification_data[-train_ind, ]
+
+## classification models setup
+gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
+lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
+
+model_comparison_table(train_set_cf, test_set_cf,
+                       gbm_mod=gbm, log_mod = lm_cf)
+#> # A tibble: 2 x 5
+#>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
+#>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
+#> 1 gbm_mod          0.729       0.454          0.6       0.192
+#> 2 log_mod          0.761       0.512          0.65      0.255
+```
 
 2.  `confusion_matrix`
 
 <!-- end list -->
 
-    library(RMLViz)
-    set.seed(420)
-    num.samples <- 100
-    weight <- sort(rnorm(n=num.samples, mean=172, sd=29))
-    obese <- ifelse(test=(runif(n=num.samples) < (rank(weight)/num.samples)),
-                    yes=1, no=0)
-    
-    glm.fit=glm(obese ~ weight, family=binomial)
-    obese_proba <- glm.fit$fitted.values
-    
-    confusion_matrix(obese, obese_proba)
+``` r
+library(RMLViz)
+data(iris)
+
+set.seed(123)
+split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
+
+training_set <- subset(iris, split == TRUE)
+valid_set <- subset(iris, split == FALSE)
+
+X_train <- training_set[, -5]
+y_train <- training_set[, 5]
+X_valid <- valid_set[, -5]
+y_valid <- valid_set[, 5]
+
+predict <- class::knn(X_train, X_train, y_train, k = 5)
+
+confusion_matrix(y_train, predict)
+#> Warning: 'tidy.matrix' is deprecated.
+#> See help("Deprecated")
+```
+
+<img src="man/figures/README-2-1.png" width="100%" />
+
+    #> # A tibble: 3 x 12
+    #>   .rownames Sensitivity Specificity Pos.Pred.Value Neg.Pred.Value Precision
+    #>   <chr>           <dbl>       <dbl>          <dbl>          <dbl>     <dbl>
+    #> 1 Class: s~       1           1               1             1          1   
+    #> 2 Class: v~       0.947       1               1             0.974      1   
+    #> 3 Class: v~       1           0.974           0.95          1          0.95
+    #> # ... with 6 more variables: Recall <dbl>, F1 <dbl>, Prevalence <dbl>,
+    #> #   Detection.Rate <dbl>, Detection.Prevalence <dbl>,
+    #> #   Balanced.Accuracy <dbl>
 
 3.  `plot_train_valid_error`
 
 <!-- end list -->
 
-    library(RMLViz)
-    data(iris)
-    
-    # use the iris data for unittest
-    set.seed(123)
-    split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
-    
-    training_set <- subset(iris, split == TRUE)
-    valid_set <- subset(iris, split == FALSE)
-    
-    X_train <- training_set[, -5]
-    y_train <- training_set[, 5]
-    X_valid <- valid_set[, -5]
-    y_valid <- valid_set[, 5]
-    
-    plot_train_valid_error('knn', 
-                           X_train, y_train, 
-                           X_valid, y_valid, 
-                           'k', range(1, 50))
+``` r
+library(RMLViz)
+data(iris)
+
+set.seed(123)
+split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
+
+training_set <- subset(iris, split == TRUE)
+valid_set <- subset(iris, split == FALSE)
+
+X_train <- training_set[, -5]
+y_train <- training_set[, 5]
+X_valid <- valid_set[, -5]
+y_valid <- valid_set[, 5]
+
+plot_train_valid_error('knn', 
+                       X_train, y_train, 
+                       X_valid, y_valid, 
+                       'k', range(1, 50))
+```
+
+<img src="man/figures/README-3-1.png" width="100%" />
 
 4.  `plot_roc`
 
 <!-- end list -->
 
-    library(RMLViz)
-    set.seed(420)
-    num.samples <- 100
-    weight <- sort(rnorm(n=num.samples, mean=172, sd=29))
-    obese <- ifelse(test=(runif(n=num.samples) < (rank(weight)/num.samples)),
-                    yes=1, no=0)
-    
-    glm.fit=glm(obese ~ weight, family=binomial)
-    obese_proba <- glm.fit$fitted.values
-    
-    plot_roc(obese, obese_proba)
+``` r
+library(RMLViz)
+set.seed(420)
+num.samples <- 100
+weight <- sort(rnorm(n=num.samples, mean=172, sd=29))
+obese <- ifelse(test=(runif(n=num.samples) < (rank(weight)/num.samples)),
+                yes=1, no=0)
+
+glm.fit=glm(obese ~ weight, family=binomial)
+obese_proba <- glm.fit$fitted.values
+
+plot_roc(obese, obese_proba)
+```
+
+<img src="man/figures/README-4-1.png" width="100%" />

@@ -45,6 +45,12 @@ You can install the released version of RMLViz from [CRAN](https://CRAN.R-projec
 ``` r
 install.packages("RMLViz")
 ```
+And the development version from [GitHub](https://github.com/) with:
+
+```
+# install.packages("devtools")
+devtools::install_github("UBC-MDS/RMLViz")
+```
 
 ## Functions
 
@@ -63,7 +69,12 @@ For all of our functions, there are not existing packages that implement the exa
 
 R version 3.6.1 and R packages:
 
+- caret
 - dplyr
+- tidyr
+- magrittr
+- ggplot2
+- broom
 - caret
 - mlbench
 - pls
@@ -72,50 +83,35 @@ R version 3.6.1 and R packages:
 - caTools
 - tibble
 - purrr
-- devtools
 - pROC
 - plotROC
 - class
 - ggplot2
 - rpart
 - randomForest
+- testthat
 - datasets
 
-
-## Installation
-
-You can install the released version of RMLViz from [CRAN](https://cran.r-project.org/) with:
-
-```
-install.packages("RMLViz")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-```
-# install.packages("devtools")
-devtools::install_github("UBC-MDS/RMLViz")
-```
 
 ## Usage and example
 
 1. `model_comparison_table`
 
-```
+``` {r 1, message=FALSE}
 library(RMLViz)
 library(mlbench)
 data(Sonar)
 
-toy_classification_data <- select(as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
+toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
 
-train_ind <- createDataPartition(toy_classification_data$Class, p=0.9, list=F)
+train_ind <- caret::createDataPartition(toy_classification_data$Class, p=0.9, list=F)
 
 train_set_cf <- toy_classification_data[train_ind, ]
 test_set_cf <- toy_classification_data[-train_ind, ]
 
 ## classification models setup
-gbm <- train(Class~., train_set_cf, method="gbm", verbose=F)
-lm_cf <- train(Class~., train_set_cf, method="LogitBoost", verbose=F)
+gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
+lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
                        gbm_mod=gbm, log_mod = lm_cf)
@@ -123,28 +119,33 @@ model_comparison_table(train_set_cf, test_set_cf,
 
 2. `confusion_matrix`
 
-```
+```{r 2, message=FALSE}
 library(RMLViz)
-set.seed(420)
-num.samples <- 100
-weight <- sort(rnorm(n=num.samples, mean=172, sd=29))
-obese <- ifelse(test=(runif(n=num.samples) < (rank(weight)/num.samples)),
-                yes=1, no=0)
+data(iris)
 
-glm.fit=glm(obese ~ weight, family=binomial)
-obese_proba <- glm.fit$fitted.values
+set.seed(123)
+split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
 
-confusion_matrix(obese, obese_proba)
+training_set <- subset(iris, split == TRUE)
+valid_set <- subset(iris, split == FALSE)
+
+X_train <- training_set[, -5]
+y_train <- training_set[, 5]
+X_valid <- valid_set[, -5]
+y_valid <- valid_set[, 5]
+
+predict <- class::knn(X_train, X_train, y_train, k = 5)
+
+confusion_matrix(y_train, predict)
 
 ```
 
 3. `plot_train_valid_error`
 
-```
+``` {r 3, message=FALSE}
 library(RMLViz)
 data(iris)
 
-# use the iris data for unittest
 set.seed(123)
 split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
 
@@ -164,7 +165,7 @@ plot_train_valid_error('knn',
 
 4. `plot_roc`
 
-```
+``` {r 4, message=FALSE}
 library(RMLViz)
 set.seed(420)
 num.samples <- 100
