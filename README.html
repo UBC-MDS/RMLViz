@@ -605,6 +605,8 @@ body {
 <h1 id="rmlviz">RMLViz</h1>
 <!-- badges: start -->
 
+<p><a href="https://github.com/UBC-MDS/RMLViz/actions"><img src="data:text/plain; charset=utf-8,Not%20Found" alt="R build status" /></a></p>
+<p><a href="https://codecov.io/gh/UBC-MDS/RMLViz"><img src="data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTM3IiBoZWlnaHQ9IjIwIj4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDI9IjAiIHkyPSIxMDAlIj4KICAgICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNiYmIiIHN0b3Atb3BhY2l0eT0iLjEiIC8+CiAgICAgICAgPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLW9wYWNpdHk9Ii4xIiAvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxtYXNrIGlkPSJhIj4KICAgICAgICA8cmVjdCB3aWR0aD0iMTM3IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2ZmZiIgLz4KICAgIDwvbWFzaz4KICAgIDxnIG1hc2s9InVybCgjYSkiPgogICAgICAgIDxwYXRoIGZpbGw9IiM1NTUiIGQ9Ik0wIDBoNzZ2MjBIMHoiIC8+CiAgICAgICAgPHBhdGggZmlsbD0iIzlmOWY5ZiIgZD0iTTc2IDBoNjF2MjBINzZ6IiAvPgogICAgICAgIDxwYXRoIGZpbGw9InVybCgjYikiIGQ9Ik0wIDBoMTM3djIwSDB6IiAvPgogICAgPC9nPgogICAgPGcgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkRlamFWdSBTYW5zLFZlcmRhbmEsR2VuZXZhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiPgogICAgICAgIDx0ZXh0IHg9IjQ2IiB5PSIxNSIgZmlsbD0iIzAxMDEwMSIgZmlsbC1vcGFjaXR5PSIuMyI+Y29kZWNvdjwvdGV4dD4KICAgICAgICA8dGV4dCB4PSI0NiIgeT0iMTQiPmNvZGVjb3Y8L3RleHQ+CiAgICAgICAgPHRleHQgeD0iMTA1LjUiIHk9IjE1IiBmaWxsPSIjMDEwMTAxIiBmaWxsLW9wYWNpdHk9Ii4zIj51bmtub3duPC90ZXh0PgogICAgICAgIDx0ZXh0IHg9IjEwNS41IiB5PSIxNCI+dW5rbm93bjwvdGV4dD4KICAgIDwvZz4KICAgIDxzdmcgdmlld0JveD0iMTYxIC04IDYwIDYwIj4KICAgICAgICA8cGF0aCBkPSJNMjMuMDEzIDBDMTAuMzMzLjAwOS4wMSAxMC4yMiAwIDIyLjc2MnYuMDU4bDMuOTE0IDIuMjc1LjA1My0uMDM2YTExLjI5MSAxMS4yOTEgMCAwIDEgOC4zNTItMS43NjcgMTAuOTExIDEwLjkxMSAwIDAgMSA1LjUgMi43MjZsLjY3My42MjQuMzgtLjgyOGMuMzY4LS44MDIuNzkzLTEuNTU2IDEuMjY0LTIuMjQuMTktLjI3Ni4zOTgtLjU1NC42MzctLjg1MWwuMzkzLS40OS0uNDg0LS40MDRhMTYuMDggMTYuMDggMCAwIDAtNy40NTMtMy40NjYgMTYuNDgyIDE2LjQ4MiAwIDAgMC03LjcwNS40NDlDNy4zODYgMTAuNjgzIDE0LjU2IDUuMDE2IDIzLjAzIDUuMDFjNC43NzkgMCA5LjI3MiAxLjg0IDEyLjY1MSA1LjE4IDIuNDEgMi4zODIgNC4wNjkgNS4zNSA0LjgwNyA4LjU5MWExNi41MyAxNi41MyAwIDAgMC00Ljc5Mi0uNzIzbC0uMjkyLS4wMDJhMTYuNzA3IDE2LjcwNyAwIDAgMC0xLjkwMi4xNGwtLjA4LjAxMmMtLjI4LjAzNy0uNTI0LjA3NC0uNzQ4LjExNS0uMTEuMDE5LS4yMTguMDQxLS4zMjcuMDYzLS4yNTcuMDUyLS41MS4xMDgtLjc1LjE2OWwtLjI2NS4wNjdhMTYuMzkgMTYuMzkgMCAwIDAtLjkyNi4yNzZsLS4wNTYuMDE4Yy0uNjgyLjIzLTEuMzYuNTExLTIuMDE2LjgzOGwtLjA1Mi4wMjZjLS4yOS4xNDUtLjU4NC4zMDUtLjg5OS40OWwtLjA2OS4wNGExNS41OTYgMTUuNTk2IDAgMCAwLTQuMDYxIDMuNDY2bC0uMTQ1LjE3NWMtLjI5LjM2LS41MjEuNjY2LS43MjMuOTYtLjE3LjI0Ny0uMzQuNTEzLS41NTIuODY0bC0uMTE2LjE5OWMtLjE3LjI5Mi0uMzIuNTctLjQ0OS44MjRsLS4wMy4wNTdhMTYuMTE2IDE2LjExNiAwIDAgMC0uODQzIDIuMDI5bC0uMDM0LjEwMmExNS42NSAxNS42NSAwIDAgMC0uNzg2IDUuMTc0bC4wMDMuMjE0YTIxLjUyMyAyMS41MjMgMCAwIDAgLjA0Ljc1NGMuMDA5LjExOS4wMi4yMzcuMDMyLjM1NS4wMTQuMTQ1LjAzMi4yOS4wNDkuNDMybC4wMS4wOGMuMDEuMDY3LjAxNy4xMzMuMDI2LjE5Ny4wMzQuMjQyLjA3NC40OC4xMTkuNzIuNDYzIDIuNDE5IDEuNjIgNC44MzYgMy4zNDUgNi45OWwuMDc4LjA5OC4wOC0uMDk1Yy42ODgtLjgxIDIuMzk1LTMuMzggMi41MzktNC45MjJsLjAwMy0uMDI5LS4wMTQtLjAyNWExMC43MjcgMTAuNzI3IDAgMCAxLTEuMjI2LTQuOTU2YzAtNS43NiA0LjU0NS0xMC41NDQgMTAuMzQzLTEwLjg5bC4zODEtLjAxNGExMS40MDMgMTEuNDAzIDAgMCAxIDYuNjUxIDEuOTU3bC4wNTQuMDM2IDMuODYyLTIuMjM3LjA1LS4wM3YtLjA1NmMuMDA2LTYuMDgtMi4zODQtMTEuNzkzLTYuNzI5LTE2LjA4OUMzNC45MzIgMi4zNjEgMjkuMTYgMCAyMy4wMTMgMCIgZmlsbD0iI0YwMUY3QSIgZmlsbC1ydWxlPSJldmVub2RkIi8+CiAgICA8L3N2Zz4KPC9zdmc+Cg==" alt="codecov" /></a></p>
 <!-- badges: end -->
 
 <p>Visualization package for ML models.</p>
@@ -725,26 +727,28 @@ devtools::install_github(&quot;UBC-MDS/RMLViz&quot;)
 
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(RMLViz)</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="kw">library</span>(mlbench)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">data</span>(Sonar)</a>
-<a class="sourceLine" id="cb3-4" title="4"></a>
-<a class="sourceLine" id="cb3-5" title="5">toy_classification_data &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(dplyr<span class="op">::</span><span class="kw">as_tibble</span>(Sonar), V1, V2, V3, V4, V5, Class)</a>
-<a class="sourceLine" id="cb3-6" title="6"></a>
-<a class="sourceLine" id="cb3-7" title="7">train_ind &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">createDataPartition</span>(toy_classification_data<span class="op">$</span>Class, <span class="dt">p=</span><span class="fl">0.9</span>, <span class="dt">list=</span>F)</a>
-<a class="sourceLine" id="cb3-8" title="8"></a>
-<a class="sourceLine" id="cb3-9" title="9">train_set_cf &lt;-<span class="st"> </span>toy_classification_data[train_ind, ]</a>
-<a class="sourceLine" id="cb3-10" title="10">test_set_cf &lt;-<span class="st"> </span>toy_classification_data[<span class="op">-</span>train_ind, ]</a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">## classification models setup</span></a>
-<a class="sourceLine" id="cb3-13" title="13">gbm &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">&quot;gbm&quot;</span>, <span class="dt">verbose=</span>F)</a>
-<a class="sourceLine" id="cb3-14" title="14">lm_cf &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">&quot;LogitBoost&quot;</span>, <span class="dt">verbose=</span>F)</a>
-<a class="sourceLine" id="cb3-15" title="15"></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="kw">model_comparison_table</span>(train_set_cf, test_set_cf,</a>
-<a class="sourceLine" id="cb3-17" title="17">                       <span class="dt">gbm_mod=</span>gbm, <span class="dt">log_mod =</span> lm_cf)</a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt;   model   train_Accuracy train_Kappa test_Accuracy test_Kappa</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt; 1 gbm_mod          0.729       0.454          0.6       0.192</span></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt; 2 log_mod          0.761       0.512          0.65      0.255</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">#&gt; Warning: package &#39;mlbench&#39; was built under R version 3.6.3</span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw">data</span>(Sonar)</a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6">toy_classification_data &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(dplyr<span class="op">::</span><span class="kw">as_tibble</span>(Sonar), V1, V2, V3, V4, V5, Class)</a>
+<a class="sourceLine" id="cb3-7" title="7"></a>
+<a class="sourceLine" id="cb3-8" title="8">train_ind &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">createDataPartition</span>(toy_classification_data<span class="op">$</span>Class, <span class="dt">p=</span><span class="fl">0.9</span>, <span class="dt">list=</span>F)</a>
+<a class="sourceLine" id="cb3-9" title="9"></a>
+<a class="sourceLine" id="cb3-10" title="10">train_set_cf &lt;-<span class="st"> </span>toy_classification_data[train_ind, ]</a>
+<a class="sourceLine" id="cb3-11" title="11">test_set_cf &lt;-<span class="st"> </span>toy_classification_data[<span class="op">-</span>train_ind, ]</a>
+<a class="sourceLine" id="cb3-12" title="12"></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">## classification models setup</span></a>
+<a class="sourceLine" id="cb3-14" title="14">gbm &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">&quot;gbm&quot;</span>, <span class="dt">verbose=</span>F)</a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; Warning: package &#39;caret&#39; was built under R version 3.6.2</span></a>
+<a class="sourceLine" id="cb3-16" title="16">lm_cf &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw">train</span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">&quot;LogitBoost&quot;</span>, <span class="dt">verbose=</span>F)</a>
+<a class="sourceLine" id="cb3-17" title="17"></a>
+<a class="sourceLine" id="cb3-18" title="18"><span class="kw">model_comparison_table</span>(train_set_cf, test_set_cf,</a>
+<a class="sourceLine" id="cb3-19" title="19">                       <span class="dt">gbm_mod=</span>gbm, <span class="dt">log_mod =</span> lm_cf)</a>
+<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
+<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt;   model   train_Accuracy train_Kappa test_Accuracy test_Kappa</span></a>
+<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="co">#&gt; 1 gbm_mod          0.729       0.452          0.5     -0.0753</span></a>
+<a class="sourceLine" id="cb3-24" title="24"><span class="co">#&gt; 2 log_mod          0.787       0.572          0.45    -0.100</span></a></code></pre></div>
 <ol start="2">
 <li><code>confusion_matrix</code></li>
 </ol>
@@ -778,8 +782,7 @@ devtools::install_github(&quot;UBC-MDS/RMLViz&quot;)
 #&gt; 2 Class: v~       0.947       1               1             0.974      1   
 #&gt; 3 Class: v~       1           0.974           0.95          1          0.95
 #&gt; # ... with 6 more variables: Recall &lt;dbl&gt;, F1 &lt;dbl&gt;, Prevalence &lt;dbl&gt;,
-#&gt; #   Detection.Rate &lt;dbl&gt;, Detection.Prevalence &lt;dbl&gt;,
-#&gt; #   Balanced.Accuracy &lt;dbl&gt;
+#&gt; #   Detection.Rate &lt;dbl&gt;, Detection.Prevalence &lt;dbl&gt;, Balanced.Accuracy &lt;dbl&gt;
 </code></pre>
 <ol start="3">
 <li><code>plot_train_valid_error</code></li>

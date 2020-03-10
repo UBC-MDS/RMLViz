@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/UBC-MDS/RMLViz/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/RMLViz/actions)
+
+[![codecov](https://codecov.io/gh/UBC-MDS/RMLViz/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/RMLViz)
 <!-- badges: end -->
 
 Visualization package for ML models.
@@ -96,6 +100,7 @@ R version 3.6.1 and R packages:
 ``` r
 library(RMLViz)
 library(mlbench)
+#> Warning: package 'mlbench' was built under R version 3.6.3
 data(Sonar)
 
 toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
@@ -107,6 +112,7 @@ test_set_cf <- toy_classification_data[-train_ind, ]
 
 ## classification models setup
 gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
+#> Warning: package 'caret' was built under R version 3.6.2
 lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
@@ -114,8 +120,8 @@ model_comparison_table(train_set_cf, test_set_cf,
 #> # A tibble: 2 x 5
 #>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
 #>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
-#> 1 gbm_mod          0.729       0.454          0.6       0.192
-#> 2 log_mod          0.761       0.512          0.65      0.255
+#> 1 gbm_mod          0.729       0.452          0.5     -0.0753
+#> 2 log_mod          0.787       0.572          0.45    -0.100
 ```
 
 2.  `confusion_matrix`
@@ -153,8 +159,7 @@ confusion_matrix(y_train, predict)
     #> 2 Class: v~       0.947       1               1             0.974      1   
     #> 3 Class: v~       1           0.974           0.95          1          0.95
     #> # ... with 6 more variables: Recall <dbl>, F1 <dbl>, Prevalence <dbl>,
-    #> #   Detection.Rate <dbl>, Detection.Prevalence <dbl>,
-    #> #   Balanced.Accuracy <dbl>
+    #> #   Detection.Rate <dbl>, Detection.Prevalence <dbl>, Balanced.Accuracy <dbl>
 
 3.  `plot_train_valid_error`
 
