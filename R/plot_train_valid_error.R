@@ -23,7 +23,13 @@
 #' @return A plot
 #' @export
 #' @examples
-#' plot_train_valid_error("decision tree", X_train, y_train, X_valid, y_valid, "maxdepth", c(1, 5, 10, 15, 20))
+#' plot_train_valid_error("knn",
+#'                        tibble::tibble(a = c(1, 2, 3)),
+#'                        c(1, 2, 3),
+#'                        tibble::tibble(a = c(1, 2, 3)),
+#'                        c(1, 2, 3),
+#'                        "k",
+#'                        seq(3))
 plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_valid, param_name, param_vec) {
 
   if (!is.data.frame(X_train)){
