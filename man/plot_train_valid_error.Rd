@@ -45,5 +45,11 @@ to try and then plots train/validation errors vs.
 parameter values.
 }
 \examples{
-plot_train_valid_error("decision tree", X_train, y_train, X_valid, y_valid, "maxdepth", c(1, 5, 10, 15, 20))
+plot_train_valid_error("knn",
+                       tibble::tibble(a = c(1, 2, 3)),
+                       c(1, 2, 3),
+                       tibble::tibble(a = c(1, 2, 3)),
+                       c(1, 2, 3),
+                       "k",
+                       seq(3))
 }
