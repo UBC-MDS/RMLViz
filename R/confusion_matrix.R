@@ -58,10 +58,11 @@ confusion_matrix <- function(actual_y, predicted_y, labels = NULL, title = NULL)
     ggplot2::theme(legend.position = "none") +
     ggplot2::labs(title = title)
 
-  metric_score <- broom::tidy(confusion_matrix$byClass)
+  metric_score <- as.data.frame(confusion_matrix$byClass)
 
   print(confusion_plot)
   return(metric_score)
 }
+
 
 
