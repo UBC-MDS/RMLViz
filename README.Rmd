@@ -68,30 +68,32 @@ For all of our functions, there are not existing packages that implement the exa
 
 ## Dependencies
 
-R version 3.6.1 and R packages:
+R version >= 3.6.1 and R packages:
 
-- caret
+- vctrs,
+- lifecycle,
+- pillar,
 - dplyr
 - tidyr
 - magrittr
 - ggplot2
 - broom
-- caret
-- mlbench
 - pls
+- covr
 - gbm
-- e1071
-- caTools
 - tibble
+- testthat
 - purrr
 - pROC
 - plotROC
+- datasets
 - class
-- ggplot2
 - rpart
 - randomForest
-- testthat
-- datasets
+- e1071
+- mlbench
+- caTools
+- caret
 
 
 ## Usage and example
