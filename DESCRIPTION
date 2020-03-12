@@ -27,24 +27,27 @@ Suggests:
     testthat (>= 2.1.0),
     covr
 Imports: 
-    caret,
+    vctrs,
+    lifecycle,
+    pillar,
     dplyr,
     tidyr,
     magrittr,
     ggplot2,
     broom,
-    mlbench,
     pls,
     gbm,
-    e1071,
-    caTools,
+    datasets,
     tibble,
     purrr,
     pROC,
     plotROC,
     class,
+    e1071,
+    mlbench,
+    caret,
+    caTools,
     rpart,
-    randomForest,
-    datasets
+    randomForest
 URL: https://github.com/UBC-MDS/RMLViz
 BugReports: https://github.com/UBC-MDS/RMLViz/issues

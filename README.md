@@ -65,30 +65,32 @@ insights about machine learning models conveniently.
 
 ## Dependencies
 
-R version 3.6.1 and R packages:
+R version \>= 3.6.1 and R packages:
 
-  - caret
+  - vctrs,
+  - lifecycle,
+  - pillar,
   - dplyr
   - tidyr
   - magrittr
   - ggplot2
   - broom
-  - caret
-  - mlbench
   - pls
+  - covr
   - gbm
-  - e1071
-  - caTools
   - tibble
+  - testthat
   - purrr
   - pROC
   - plotROC
+  - datasets
   - class
-  - ggplot2
   - rpart
   - randomForest
-  - testthat
-  - datasets
+  - e1071
+  - mlbench
+  - caTools
+  - caret
 
 ## Usage and example
 
@@ -99,6 +101,7 @@ R version 3.6.1 and R packages:
 ``` r
 library(RMLViz)
 library(mlbench)
+#> Warning: package 'mlbench' was built under R version 3.6.3
 data(Sonar)
 
 toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
@@ -110,6 +113,7 @@ test_set_cf <- toy_classification_data[-train_ind, ]
 
 ## classification models setup
 gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
+#> Warning: package 'caret' was built under R version 3.6.2
 lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
@@ -117,8 +121,8 @@ model_comparison_table(train_set_cf, test_set_cf,
 #> # A tibble: 2 x 5
 #>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
 #>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
-#> 1 gbm_mod          0.729       0.448          0.65     0.3   
-#> 2 log_mod          0.803       0.598          0.55     0.0816
+#> 1 gbm_mod          0.729       0.451          0.55     0.0816
+#> 2 log_mod          0.707       0.417          0.35    -0.3
 ```
 
 2.  `confusion_matrix`
@@ -201,6 +205,7 @@ glm.fit=glm(obese ~ weight, family=binomial)
 obese_proba <- glm.fit$fitted.values
 
 plot_roc(obese, obese_proba)
+#> Warning in verify_d(data$d): D not labeled 0/1, assuming label = 0 and NA = 1!
 ```
 
 <img src="man/figures/README-4-1.png" width="100%" />
