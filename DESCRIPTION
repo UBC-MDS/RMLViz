@@ -33,8 +33,6 @@ Imports:
     magrittr,
     ggplot2,
     broom,
-    dplyr,
-    caret,
     mlbench,
     pls,
     gbm,
@@ -45,10 +43,8 @@ Imports:
     pROC,
     plotROC,
     class,
-    ggplot2,
     rpart,
     randomForest,
-    testthat,
     datasets
 URL: https://github.com/UBC-MDS/RMLViz
 BugReports: https://github.com/UBC-MDS/RMLViz/issues

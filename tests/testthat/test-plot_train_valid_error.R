@@ -30,7 +30,7 @@ test_that("The return type of knn is not correct.", {
   expect_true(ggplot2::is.ggplot(plot_train_valid_error('knn',
                                                         X_train, y_train,
                                                         X_valid, y_valid,
-                                                        'k', range(1, 50))))
+                                                        'k', seq(1, 50))))
 })
 
 test_that("The return type of decision tree is not correct.", {
@@ -72,7 +72,7 @@ test_that("X_train should be a data frame.", {
   expect_error(plot_train_valid_error('knn',
                                       c(1, 2, 3), y_train,
                                       X_valid, y_valid,
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, X_train should be a data frame.")
 })
 
@@ -81,7 +81,7 @@ test_that("y_train should be a vector or factor.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, matrix(c(1, 2, 3, 4), nrow=1, ncol=4),
                                       X_valid, y_valid,
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, y_train should be a vector or factor.")
 })
 
@@ -90,7 +90,7 @@ test_that("X_valid should be a data frame.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, y_train,
                                       c(1, 2, 3), y_valid,
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, X_valid should be a data frame.")
 })
 
@@ -99,7 +99,7 @@ test_that("y_valid should be a vector or factor.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, y_train,
                                       X_valid, matrix(c(1, 2, 3, 4), nrow=1, ncol=4),
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, y_valid should be a vector or factor.")
 })
 
@@ -108,7 +108,7 @@ test_that("All elements in X_train should be numeric.", {
   expect_error(plot_train_valid_error('knn',
                                       tibble::tibble(a = c(1, 2, '3')), y_train,
                                       X_valid, y_valid,
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, all elements in X_train should be numeric.")
 })
 
@@ -117,7 +117,7 @@ test_that("All elements in y_train should be numeric or factor.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, c(1, 2, '3'),
                                       X_valid, y_valid,
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, all elements in y_train should be numeric or factor.")
 })
 
@@ -126,7 +126,7 @@ test_that("All elements in X_valid should be numeric.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, y_train,
                                       tibble::tibble(a = c(1, 2, '3')), y_valid,
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, all elements in X_valid should be numeric.")
 })
 
@@ -135,7 +135,7 @@ test_that("All elements in y_valid should be numeric or factor.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, y_train,
                                       X_valid, c(1, 2, '3'),
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, all elements in y_valid should be numeric or factor.")
 })
 
@@ -163,7 +163,7 @@ test_that("X_train and y_train should have the same number of rows.", {
   expect_error(plot_train_valid_error('knn',
                                       tibble::tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3, 4),
                                       tibble::tibble(a = c(1, 2, 3)), c(1, 2, 3),
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, X_train and y_train should have the same number of rows.")
 })
 
@@ -172,7 +172,7 @@ test_that("X_valid and y_valid should have the same number of rows.", {
   expect_error(plot_train_valid_error('knn',
                                       tibble::tibble(a = c(1, 2, 3)), c(1, 2, 3),
                                       tibble::tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3, 4),
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, X_valid and y_valid should have the same number of rows.")
 })
 
@@ -181,7 +181,7 @@ test_that("X_train and X_valid should have the same number of columns.", {
   expect_error(plot_train_valid_error('knn',
                                       tibble::tibble(a = c(1, 2, 3), b = c(1, 2, 3)), c(1, 2, 3),
                                       tibble::tibble(a = c(1, 2, 3)), c(1, 2, 3),
-                                      'k', range(1, 50)),
+                                      'k', seq(1, 50)),
                "Sorry, X_train and X_valid should have the same number of columns.")
 })
 
@@ -193,7 +193,7 @@ test_that("Only the hyperparameter 'k' is allowed for a 'knn' model.", {
   expect_error(plot_train_valid_error('knn',
                                       X_train, y_train,
                                       X_valid, y_valid,
-                                      'n', range(1, 50)),
+                                      'n', seq(1, 50)),
                "Sorry, only the hyperparameter 'k' is allowed for a 'knn' model.")
 
 })

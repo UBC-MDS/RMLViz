@@ -63,7 +63,7 @@ model_comparison_table <- function(train_data, test_data, ...) {
 
 make_result_row <- function(model, df){
 
-  pred_vals <- predict(model, df)
+  pred_vals <- stats::predict(model, df)
   true_vals <- pull(select(df, length(colnames(df))))
   res <- postResample(pred_vals, true_vals)
   res_row_table <- as_tibble(t(res))
