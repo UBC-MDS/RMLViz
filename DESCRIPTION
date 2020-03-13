@@ -25,7 +25,9 @@ LazyData: true
 RoxygenNote: 7.0.2
 Suggests: 
     testthat (>= 2.1.0),
-    covr
+    covr,
+    knitr,
+    rmarkdown
 Imports: 
     vctrs,
     lifecycle,
@@ -51,3 +53,4 @@ Imports:
     randomForest
 URL: https://github.com/UBC-MDS/RMLViz
 BugReports: https://github.com/UBC-MDS/RMLViz/issues
+VignetteBuilder: knitr
