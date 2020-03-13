@@ -29,3 +29,9 @@ fitted models with meaningful names,
 then generates a model comparison
 table.
 }
+\examples{
+\dontrun{
+model_comparison_table(train_set, test_set,
+model1 = model_lm, model2 = model_gbm)
+}
+}
