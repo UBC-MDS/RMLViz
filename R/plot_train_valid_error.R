@@ -32,6 +32,7 @@
 #'                        seq(3))
 plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_valid, param_name, param_vec) {
 
+  # check input data types
   if (!is.data.frame(X_train)){
     stop("Sorry, X_train should be a data frame.")
   }
@@ -71,6 +72,7 @@ plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_vali
     stop("Sorry, all elements in para_vec should be non-negative.")
   }
 
+  # check data shapes
   if (length(y_train) != nrow(X_train)){
     stop("Sorry, X_train and y_train should have the same number of rows.")
   }
