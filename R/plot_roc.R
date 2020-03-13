@@ -40,14 +40,14 @@ plot_roc <- function(y_label,predict_proba) {
     stop("Sorry, y_label and predict_proba should have the same length.")
   }
 
-  df <- tibble::tibble('label' = y_label,
-                       'predict_prob' = predict_proba)
+  df <- tibble::tibble(label = y_label,
+                       predict_prob = predict_proba)
 
   roc_obj <- pROC::roc(y_label, predict_proba)
   auc_value = round(pROC::auc(roc_obj),3)
 
   ggplot2::ggplot() +
-    plotROC::geom_roc(ggplot2::aes(d = 'label', m = 'predict_prob', color="roc"), df) +
+    plotROC::geom_roc(ggplot2::aes(d = label, m = predict_prob, color="roc"), df) +
     plotROC::style_roc()+
     ggplot2::annotate("text", x = 0.75, y = 0.5, label = paste('AUC:',auc_value))
 

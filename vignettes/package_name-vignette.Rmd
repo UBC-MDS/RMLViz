@@ -1,23 +1,19 @@
 ---
-output: github_document
+title: "RMLViz"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{package_name-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  comment = "#>"
 )
 ```
 
-# RMLViz
-
-<!-- badges: start -->
-[![R build status](https://github.com/UBC-MDS/RMLViz/workflows/R-CMD-check/badge.svg)](https://github.com/UBC-MDS/RMLViz/actions) [![codecov](https://codecov.io/gh/UBC-MDS/RMLViz/branch/master/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/RMLViz)
-<!-- badges: end -->
 
 Visualization package for ML models. 
 
@@ -32,27 +28,6 @@ Visualization package for ML models.
 >
 > 4.  Plot the ROC curve and calculate the AUC 
 
-|Contributors|GitHub Handle|
-|------------|-------------|
-|Anas Muhammad| [anasm-17](https://github.com/anasm-17)|
-|Tao Huang| [taohuang-ubc](https://github.com/taohuang-ubc)|
-|Fanli Zhou| [flizhou](https://github.com/flizhou)|
-|Mike Chen| [miketianchen](https://github.com/miketianchen)|
-
-## Installation
-
-You can install the released version of RMLViz from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("RMLViz")
-```
-And the development version from [GitHub](https://github.com/) with:
-
-```
-# install.packages("devtools")
-devtools::install_github("UBC-MDS/RMLViz")
-```
-
 ## Functions
 
 | Function Name | Input | Output | Description |
@@ -61,39 +36,6 @@ devtools::install_github("UBC-MDS/RMLViz")
 |confusion_matrix | Model, X_train, y_train, X_test, y_test, predicted_y  | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc)| Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced.|
 |plot_train_valid_error| model_name, X_train, y_train, X_test, y_test, param_name, param_vec | Train/validation errors vs. parameter values plot | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation errors vs. parameter values.|
 |plot_roc|model, X_valid, y_valid |ROC plot| Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid) and plots the ROC curve. The ROC curve also produces AUC score.|
-
-## Alignment with R Ecosystems
-
-For all of our functions, there are not existing packages that implement the exact same functionality in R. Most of these functions helps to show insights about machine learning models conveniently.
-
-## Dependencies
-
-R version >= 3.6.1 and R packages:
-
-- vctrs,
-- lifecycle,
-- pillar,
-- dplyr
-- tidyr
-- magrittr
-- ggplot2
-- broom
-- pls
-- covr
-- gbm
-- tibble
-- testthat
-- purrr
-- pROC
-- plotROC
-- datasets
-- class
-- rpart
-- randomForest
-- e1071
-- mlbench
-- caTools
-- caret
 
 
 ## Usage and example

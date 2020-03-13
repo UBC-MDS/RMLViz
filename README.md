@@ -121,8 +121,8 @@ model_comparison_table(train_set_cf, test_set_cf,
 #> # A tibble: 2 x 5
 #>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
 #>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
-#> 1 gbm_mod          0.729       0.451          0.55     0.0816
-#> 2 log_mod          0.707       0.417          0.35    -0.3
+#> 1 gbm_mod          0.729       0.448          0.65     0.3   
+#> 2 log_mod          0.803       0.598          0.55     0.0816
 ```
 
 2.  `confusion_matrix`
@@ -147,20 +147,22 @@ y_valid <- valid_set[, 5]
 predict <- class::knn(X_train, X_train, y_train, k = 5)
 
 confusion_matrix(y_train, predict)
-#> Warning: 'tidy.matrix' is deprecated.
-#> See help("Deprecated")
 ```
 
 <img src="man/figures/README-2-1.png" width="100%" />
 
-    #> # A tibble: 3 x 12
-    #>   .rownames Sensitivity Specificity Pos.Pred.Value Neg.Pred.Value Precision
-    #>   <chr>           <dbl>       <dbl>          <dbl>          <dbl>     <dbl>
-    #> 1 Class: s~       1           1               1             1          1   
-    #> 2 Class: v~       0.947       1               1             0.974      1   
-    #> 3 Class: v~       1           0.974           0.95          1          0.95
-    #> # ... with 6 more variables: Recall <dbl>, F1 <dbl>, Prevalence <dbl>,
-    #> #   Detection.Rate <dbl>, Detection.Prevalence <dbl>, Balanced.Accuracy <dbl>
+    #>                   Sensitivity Specificity Pos Pred Value Neg Pred Value Precision
+    #> Class: setosa       1.0000000   1.0000000           1.00       1.000000      1.00
+    #> Class: versicolor   0.9473684   1.0000000           1.00       0.974359      1.00
+    #> Class: virginica    1.0000000   0.9736842           0.95       1.000000      0.95
+    #>                      Recall       F1 Prevalence Detection Rate Detection Prevalence
+    #> Class: setosa     1.0000000 1.000000  0.3333333      0.3333333            0.3333333
+    #> Class: versicolor 0.9473684 0.972973  0.3333333      0.3157895            0.3157895
+    #> Class: virginica  1.0000000 0.974359  0.3333333      0.3333333            0.3508772
+    #>                   Balanced Accuracy
+    #> Class: setosa             1.0000000
+    #> Class: versicolor         0.9736842
+    #> Class: virginica          0.9868421
 
 3.  `plot_train_valid_error`
 
@@ -184,7 +186,7 @@ y_valid <- valid_set[, 5]
 plot_train_valid_error('knn', 
                        X_train, y_train, 
                        X_valid, y_valid, 
-                       'k', range(1, 50))
+                       'k', seq(50))
 ```
 
 <img src="man/figures/README-3-1.png" width="100%" />
@@ -205,7 +207,6 @@ glm.fit=glm(obese ~ weight, family=binomial)
 obese_proba <- glm.fit$fitted.values
 
 plot_roc(obese, obese_proba)
-#> Warning in verify_d(data$d): D not labeled 0/1, assuming label = 0 and NA = 1!
 ```
 
 <img src="man/figures/README-4-1.png" width="100%" />
