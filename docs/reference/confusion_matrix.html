@@ -88,6 +88,18 @@ Recall, and precision will also be produced — confusion_matrix" />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/package_name-vignette.html">RMLViz</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -148,21 +160,18 @@ Recall, and precision will also be produced</h1>
     <p>A plot and a dataframe with scoring metrics</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>confusion_matrix</span>(<span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"yes"</span>, <span class='st'>"no"</span>, <span class='st'>"yes"</span>)), <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"no"</span>, <span class='st'>"no"</span>, <span class='st'>"yes"</span>)))</div><div class='output co'>#&gt; <span class='warning'>Warning: 'tidy.numeric' is deprecated.</span>
-#&gt; <span class='warning'>See help("Deprecated")</span></div><div class='img'><img src='confusion_matrix-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 11 x 2</span><span>
-#&gt;    names                    x
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> Sensitivity          1    
-#&gt; </span><span style='color: #555555;'> 2</span><span> Specificity          0.5  
-#&gt; </span><span style='color: #555555;'> 3</span><span> Pos Pred Value       0.500
-#&gt; </span><span style='color: #555555;'> 4</span><span> Neg Pred Value       1    
-#&gt; </span><span style='color: #555555;'> 5</span><span> Precision            0.5  
-#&gt; </span><span style='color: #555555;'> 6</span><span> Recall               1    
-#&gt; </span><span style='color: #555555;'> 7</span><span> F1                   0.667
-#&gt; </span><span style='color: #555555;'> 8</span><span> Prevalence           0.333
-#&gt; </span><span style='color: #555555;'> 9</span><span> Detection Rate       0.333
-#&gt; </span><span style='color: #555555;'>10</span><span> Detection Prevalence 0.667
-#&gt; </span><span style='color: #555555;'>11</span><span> Balanced Accuracy    0.75 </div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>confusion_matrix</span>(<span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"yes"</span>, <span class='st'>"no"</span>, <span class='st'>"yes"</span>)), <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"no"</span>, <span class='st'>"no"</span>, <span class='st'>"yes"</span>)))</div><div class='img'><img src='confusion_matrix-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;                      confusion_matrix$byClass
+#&gt; Sensitivity                         1.0000000
+#&gt; Specificity                         0.5000000
+#&gt; Pos Pred Value                      0.5000000
+#&gt; Neg Pred Value                      1.0000000
+#&gt; Precision                           0.5000000
+#&gt; Recall                              1.0000000
+#&gt; F1                                  0.6666667
+#&gt; Prevalence                          0.3333333
+#&gt; Detection Rate                      0.3333333
+#&gt; Detection Prevalence                0.6666667
+#&gt; Balanced Accuracy                   0.7500000</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
