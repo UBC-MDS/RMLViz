@@ -46,6 +46,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/package_name-vignette.html">RMLViz</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
@@ -110,11 +122,9 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of RMLViz from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"RMLViz"</span>)</a></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"UBC-MDS/RMLViz"</span>)</a></code></pre></div>
+<p>You can install RMLViz from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"UBC-MDS/RMLViz"</span>)</a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2 class="hasAnchor">
@@ -168,30 +178,32 @@
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dependencies" class="anchor"></a>Dependencies</h2>
-<p>R version 3.6.1 and R packages:</p>
+<p>R version &gt;= 3.6.1 and R packages:</p>
 <ul>
-<li>caret</li>
+<li>vctrs,</li>
+<li>lifecycle,</li>
+<li>pillar,</li>
 <li>dplyr</li>
 <li>tidyr</li>
 <li>magrittr</li>
 <li>ggplot2</li>
 <li>broom</li>
-<li>caret</li>
-<li>mlbench</li>
 <li>pls</li>
+<li>covr</li>
 <li>gbm</li>
-<li>e1071</li>
-<li>caTools</li>
 <li>tibble</li>
+<li>testthat</li>
 <li>purrr</li>
 <li>pROC</li>
 <li>plotROC</li>
+<li>datasets</li>
 <li>class</li>
-<li>ggplot2</li>
 <li>rpart</li>
 <li>randomForest</li>
-<li>testthat</li>
-<li>datasets</li>
+<li>e1071</li>
+<li>mlbench</li>
+<li>caTools</li>
+<li>caret</li>
 </ul>
 </div>
 <div id="usage-and-example" class="section level2">
@@ -200,95 +212,97 @@
 <ol>
 <li><code>model_comparison_table</code></li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mlbench)</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(Sonar)</a>
-<a class="sourceLine" id="cb3-4" title="4"></a>
-<a class="sourceLine" id="cb3-5" title="5">toy_classification_data &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>(Sonar), V1, V2, V3, V4, V5, Class)</a>
-<a class="sourceLine" id="cb3-6" title="6"></a>
-<a class="sourceLine" id="cb3-7" title="7">train_ind &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caret/man/createDataPartition.html">createDataPartition</a></span>(toy_classification_data<span class="op">$</span>Class, <span class="dt">p=</span><span class="fl">0.9</span>, <span class="dt">list=</span>F)</a>
-<a class="sourceLine" id="cb3-8" title="8"></a>
-<a class="sourceLine" id="cb3-9" title="9">train_set_cf &lt;-<span class="st"> </span>toy_classification_data[train_ind, ]</a>
-<a class="sourceLine" id="cb3-10" title="10">test_set_cf &lt;-<span class="st"> </span>toy_classification_data[<span class="op">-</span>train_ind, ]</a>
-<a class="sourceLine" id="cb3-11" title="11"></a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">## classification models setup</span></a>
-<a class="sourceLine" id="cb3-13" title="13">gbm &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">"gbm"</span>, <span class="dt">verbose=</span>F)</a>
-<a class="sourceLine" id="cb3-14" title="14">lm_cf &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">"LogitBoost"</span>, <span class="dt">verbose=</span>F)</a>
-<a class="sourceLine" id="cb3-15" title="15"></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="kw"><a href="reference/model_comparison_table.html">model_comparison_table</a></span>(train_set_cf, test_set_cf,</a>
-<a class="sourceLine" id="cb3-17" title="17">                       <span class="dt">gbm_mod=</span>gbm, <span class="dt">log_mod =</span> lm_cf)</a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt;   model   train_Accuracy train_Kappa test_Accuracy test_Kappa</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="co">#&gt; 1 gbm_mod          0.729       0.448          0.65     0.3   </span></a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="co">#&gt; 2 log_mod          0.803       0.598          0.55     0.0816</span></a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(mlbench)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(Sonar)</a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5">toy_classification_data &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>(Sonar), V1, V2, V3, V4, V5, Class)</a>
+<a class="sourceLine" id="cb2-6" title="6"></a>
+<a class="sourceLine" id="cb2-7" title="7">train_ind &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caret/man/createDataPartition.html">createDataPartition</a></span>(toy_classification_data<span class="op">$</span>Class, <span class="dt">p=</span><span class="fl">0.9</span>, <span class="dt">list=</span>F)</a>
+<a class="sourceLine" id="cb2-8" title="8"></a>
+<a class="sourceLine" id="cb2-9" title="9">train_set_cf &lt;-<span class="st"> </span>toy_classification_data[train_ind, ]</a>
+<a class="sourceLine" id="cb2-10" title="10">test_set_cf &lt;-<span class="st"> </span>toy_classification_data[<span class="op">-</span>train_ind, ]</a>
+<a class="sourceLine" id="cb2-11" title="11"></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">## classification models setup</span></a>
+<a class="sourceLine" id="cb2-13" title="13">gbm &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">"gbm"</span>, <span class="dt">verbose=</span>F)</a>
+<a class="sourceLine" id="cb2-14" title="14">lm_cf &lt;-<span class="st"> </span>caret<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caret/man/train.html">train</a></span>(Class<span class="op">~</span>., train_set_cf, <span class="dt">method=</span><span class="st">"LogitBoost"</span>, <span class="dt">verbose=</span>F)</a>
+<a class="sourceLine" id="cb2-15" title="15"></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="kw"><a href="reference/model_comparison_table.html">model_comparison_table</a></span>(train_set_cf, test_set_cf,</a>
+<a class="sourceLine" id="cb2-17" title="17">                       <span class="dt">gbm_mod=</span>gbm, <span class="dt">log_mod =</span> lm_cf)</a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
+<a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt;   model   train_Accuracy train_Kappa test_Accuracy test_Kappa</span></a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;   &lt;chr&gt;            &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt; 1 gbm_mod          0.761       0.516          0.35    -0.3   </span></a>
+<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; 2 log_mod          0.75        0.503          0.45    -0.0784</span></a></code></pre></div>
 <ol>
 <li><code>confusion_matrix</code></li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(iris)</a>
-<a class="sourceLine" id="cb4-3" title="3"></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb4-5" title="5">split &lt;-<span class="st"> </span>caTools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caTools/man/sample.split.html">sample.split</a></span>(iris<span class="op">$</span>Species, <span class="dt">SplitRatio =</span> <span class="fl">0.75</span>)</a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7">training_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb4-8" title="8">valid_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb4-9" title="9"></a>
-<a class="sourceLine" id="cb4-10" title="10">X_train &lt;-<span class="st"> </span>training_set[, <span class="dv">-5</span>]</a>
-<a class="sourceLine" id="cb4-11" title="11">y_train &lt;-<span class="st"> </span>training_set[, <span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb4-12" title="12">X_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">-5</span>]</a>
-<a class="sourceLine" id="cb4-13" title="13">y_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb4-14" title="14"></a>
-<a class="sourceLine" id="cb4-15" title="15">predict &lt;-<span class="st"> </span>class<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span>(X_train, X_train, y_train, <span class="dt">k =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb4-16" title="16"></a>
-<a class="sourceLine" id="cb4-17" title="17"><span class="kw"><a href="reference/confusion_matrix.html">confusion_matrix</a></span>(y_train, predict)</a>
-<a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt; Warning: 'tidy.matrix' is deprecated.</span></a>
-<a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt; See help("Deprecated")</span></a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(iris)</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb3-5" title="5">split &lt;-<span class="st"> </span>caTools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caTools/man/sample.split.html">sample.split</a></span>(iris<span class="op">$</span>Species, <span class="dt">SplitRatio =</span> <span class="fl">0.75</span>)</a>
+<a class="sourceLine" id="cb3-6" title="6"></a>
+<a class="sourceLine" id="cb3-7" title="7">training_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-8" title="8">valid_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-9" title="9"></a>
+<a class="sourceLine" id="cb3-10" title="10">X_train &lt;-<span class="st"> </span>training_set[, <span class="dv">-5</span>]</a>
+<a class="sourceLine" id="cb3-11" title="11">y_train &lt;-<span class="st"> </span>training_set[, <span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb3-12" title="12">X_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">-5</span>]</a>
+<a class="sourceLine" id="cb3-13" title="13">y_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb3-14" title="14"></a>
+<a class="sourceLine" id="cb3-15" title="15">predict &lt;-<span class="st"> </span>class<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/class/man/knn.html">knn</a></span>(X_train, X_train, y_train, <span class="dt">k =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb3-16" title="16"></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="kw"><a href="reference/confusion_matrix.html">confusion_matrix</a></span>(y_train, predict)</a></code></pre></div>
 <p><img src="reference/figures/README-2-1.png" width="100%"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#&gt; # A tibble: 3 x 12</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt;   .rownames Sensitivity Specificity Pos.Pred.Value Neg.Pred.Value Precision</span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; 1 Class: s~       1           1               1             1          1   </span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; 2 Class: v~       0.947       1               1             0.974      1   </span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; 3 Class: v~       1           0.974           0.95          1          0.95</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; # ... with 6 more variables: Recall &lt;dbl&gt;, F1 &lt;dbl&gt;, Prevalence &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; #   Detection.Rate &lt;dbl&gt;, Detection.Prevalence &lt;dbl&gt;, Balanced.Accuracy &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#&gt;                   Sensitivity Specificity Pos Pred Value Neg Pred Value Precision</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; Class: setosa       1.0000000   1.0000000           1.00       1.000000      1.00</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; Class: versicolor   0.9473684   1.0000000           1.00       0.974359      1.00</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; Class: virginica    1.0000000   0.9736842           0.95       1.000000      0.95</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;                      Recall       F1 Prevalence Detection Rate Detection Prevalence</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; Class: setosa     1.0000000 1.000000  0.3333333      0.3333333            0.3333333</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; Class: versicolor 0.9473684 0.972973  0.3333333      0.3157895            0.3157895</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; Class: virginica  1.0000000 0.974359  0.3333333      0.3333333            0.3508772</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;                   Balanced Accuracy</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; Class: setosa             1.0000000</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; Class: versicolor         0.9736842</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; Class: virginica          0.9868421</span></a></code></pre></div>
 <ol>
 <li><code>plot_train_valid_error</code></li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(iris)</a>
-<a class="sourceLine" id="cb6-3" title="3"></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
-<a class="sourceLine" id="cb6-5" title="5">split &lt;-<span class="st"> </span>caTools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caTools/man/sample.split.html">sample.split</a></span>(iris<span class="op">$</span>Species, <span class="dt">SplitRatio =</span> <span class="fl">0.75</span>)</a>
-<a class="sourceLine" id="cb6-6" title="6"></a>
-<a class="sourceLine" id="cb6-7" title="7">training_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-8" title="8">valid_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb6-9" title="9"></a>
-<a class="sourceLine" id="cb6-10" title="10">X_train &lt;-<span class="st"> </span>training_set[, <span class="dv">-5</span>]</a>
-<a class="sourceLine" id="cb6-11" title="11">y_train &lt;-<span class="st"> </span>training_set[, <span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb6-12" title="12">X_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">-5</span>]</a>
-<a class="sourceLine" id="cb6-13" title="13">y_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">5</span>]</a>
-<a class="sourceLine" id="cb6-14" title="14"></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="kw"><a href="reference/plot_train_valid_error.html">plot_train_valid_error</a></span>(<span class="st">'knn'</span>, </a>
-<a class="sourceLine" id="cb6-16" title="16">                       X_train, y_train, </a>
-<a class="sourceLine" id="cb6-17" title="17">                       X_valid, y_valid, </a>
-<a class="sourceLine" id="cb6-18" title="18">                       <span class="st">'k'</span>, <span class="kw"><a href="https://rdrr.io/r/base/range.html">range</a></span>(<span class="dv">1</span>, <span class="dv">50</span>))</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(iris)</a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb5-5" title="5">split &lt;-<span class="st"> </span>caTools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/caTools/man/sample.split.html">sample.split</a></span>(iris<span class="op">$</span>Species, <span class="dt">SplitRatio =</span> <span class="fl">0.75</span>)</a>
+<a class="sourceLine" id="cb5-6" title="6"></a>
+<a class="sourceLine" id="cb5-7" title="7">training_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb5-8" title="8">valid_set &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(iris, split <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb5-9" title="9"></a>
+<a class="sourceLine" id="cb5-10" title="10">X_train &lt;-<span class="st"> </span>training_set[, <span class="dv">-5</span>]</a>
+<a class="sourceLine" id="cb5-11" title="11">y_train &lt;-<span class="st"> </span>training_set[, <span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb5-12" title="12">X_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">-5</span>]</a>
+<a class="sourceLine" id="cb5-13" title="13">y_valid &lt;-<span class="st"> </span>valid_set[, <span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb5-14" title="14"></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="kw"><a href="reference/plot_train_valid_error.html">plot_train_valid_error</a></span>(<span class="st">'knn'</span>, </a>
+<a class="sourceLine" id="cb5-16" title="16">                       X_train, y_train, </a>
+<a class="sourceLine" id="cb5-17" title="17">                       X_valid, y_valid, </a>
+<a class="sourceLine" id="cb5-18" title="18">                       <span class="st">'k'</span>, <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">50</span>))</a></code></pre></div>
 <p><img src="reference/figures/README-3-1.png" width="100%"></p>
 <ol>
 <li><code>plot_roc</code></li>
 </ol>
-<!-- end list --><div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">420</span>)</a>
-<a class="sourceLine" id="cb7-3" title="3">num.samples &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb7-4" title="4">weight &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dt">n=</span>num.samples, <span class="dt">mean=</span><span class="dv">172</span>, <span class="dt">sd=</span><span class="dv">29</span>))</a>
-<a class="sourceLine" id="cb7-5" title="5">obese &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="dt">test=</span>(<span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n=</span>num.samples) <span class="op">&lt;</span><span class="st"> </span>(<span class="kw"><a href="https://rdrr.io/r/base/rank.html">rank</a></span>(weight)<span class="op">/</span>num.samples)),</a>
-<a class="sourceLine" id="cb7-6" title="6">                <span class="dt">yes=</span><span class="dv">1</span>, <span class="dt">no=</span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb7-7" title="7"></a>
-<a class="sourceLine" id="cb7-8" title="8">glm.fit=<span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(obese <span class="op">~</span><span class="st"> </span>weight, <span class="dt">family=</span>binomial)</a>
-<a class="sourceLine" id="cb7-9" title="9">obese_proba &lt;-<span class="st"> </span>glm.fit<span class="op">$</span>fitted.values</a>
-<a class="sourceLine" id="cb7-10" title="10"></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="kw"><a href="reference/plot_roc.html">plot_roc</a></span>(obese, obese_proba)</a></code></pre></div>
+<!-- end list --><div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RMLViz)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="dv">420</span>)</a>
+<a class="sourceLine" id="cb6-3" title="3">num.samples &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb6-4" title="4">weight &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="dt">n=</span>num.samples, <span class="dt">mean=</span><span class="dv">172</span>, <span class="dt">sd=</span><span class="dv">29</span>))</a>
+<a class="sourceLine" id="cb6-5" title="5">obese &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="dt">test=</span>(<span class="kw"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="dt">n=</span>num.samples) <span class="op">&lt;</span><span class="st"> </span>(<span class="kw"><a href="https://rdrr.io/r/base/rank.html">rank</a></span>(weight)<span class="op">/</span>num.samples)),</a>
+<a class="sourceLine" id="cb6-6" title="6">                <span class="dt">yes=</span><span class="dv">1</span>, <span class="dt">no=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb6-7" title="7"></a>
+<a class="sourceLine" id="cb6-8" title="8">glm.fit=<span class="kw"><a href="https://rdrr.io/r/stats/glm.html">glm</a></span>(obese <span class="op">~</span><span class="st"> </span>weight, <span class="dt">family=</span>binomial)</a>
+<a class="sourceLine" id="cb6-9" title="9">obese_proba &lt;-<span class="st"> </span>glm.fit<span class="op">$</span>fitted.values</a>
+<a class="sourceLine" id="cb6-10" title="10"></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="kw"><a href="reference/plot_roc.html">plot_roc</a></span>(obese, obese_proba)</a></code></pre></div>
 <p><img src="reference/figures/README-4-1.png" width="100%"></p>
 </div>
 </div>
@@ -307,8 +321,9 @@
 <div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li>
+<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
 </ul>
 </div>
 <div class="community">
