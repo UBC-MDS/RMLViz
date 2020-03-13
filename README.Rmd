@@ -163,7 +163,7 @@ y_valid <- valid_set[, 5]
 plot_train_valid_error('knn', 
                        X_train, y_train, 
                        X_valid, y_valid, 
-                       'k', range(1, 50))
+                       'k', seq(50))
 ```
 
 4. `plot_roc`
