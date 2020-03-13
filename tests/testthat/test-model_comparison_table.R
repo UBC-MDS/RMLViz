@@ -67,3 +67,7 @@ test_that("4 numeric columns for classification model", {
 test_that("6 numeric columns for regression model", {
   expect_equal(num_calls_reg, 6)
 })
+
+test_that("Input set should be a tibble", {
+  expect_error(model_comparison_table("hello", "hi", model_1_reg))
+})

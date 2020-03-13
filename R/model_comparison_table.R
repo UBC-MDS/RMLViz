@@ -7,6 +7,7 @@
 #' @import dplyr
 #' @import caret
 #' @import mlbench
+#' @import tibble
 #'
 #' @param train_data tibble of training data with target as last column
 #' @param test_data tibble of testing data with target as last column
@@ -16,7 +17,17 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' model_comparison_table(train_set, test_set,
+#' model1 = model_lm, model2 = model_gbm)
+#' }
 model_comparison_table <- function(train_data, test_data, ...) {
+  if (!is_tibble(train_data)){
+    stop("train_data should be tibble")
+  }
+  if (!is_tibble(test_data)){
+    stop("test_data should be tibble")
+  }
 
   dots <- list(...)
   mod_names <- names(dots)
