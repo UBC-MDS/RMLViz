@@ -32,6 +32,7 @@ Visualization package for ML models.
 >
 > 4.  Plot the ROC curve and calculate the AUC 
 
+
 |Contributors|GitHub Handle|
 |------------|-------------|
 |Anas Muhammad| [anasm-17](https://github.com/anasm-17)|
@@ -41,12 +42,7 @@ Visualization package for ML models.
 
 ## Installation
 
-You can install the released version of RMLViz from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("RMLViz")
-```
-And the development version from [GitHub](https://github.com/) with:
+You can install RMLViz from [GitHub](https://github.com/) with:
 
 ```
 # install.packages("devtools")

@@ -36,14 +36,7 @@ Visualization package for ML models.
 
 ## Installation
 
-You can install the released version of RMLViz from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("RMLViz")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install RMLViz from [GitHub](https://github.com/) with:
 
     # install.packages("devtools")
     devtools::install_github("UBC-MDS/RMLViz")
@@ -101,7 +94,6 @@ R version \>= 3.6.1 and R packages:
 ``` r
 library(RMLViz)
 library(mlbench)
-#> Warning: package 'mlbench' was built under R version 3.6.3
 data(Sonar)
 
 toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
@@ -113,7 +105,6 @@ test_set_cf <- toy_classification_data[-train_ind, ]
 
 ## classification models setup
 gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
-#> Warning: package 'caret' was built under R version 3.6.2
 lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
@@ -121,8 +112,8 @@ model_comparison_table(train_set_cf, test_set_cf,
 #> # A tibble: 2 x 5
 #>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
 #>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
-#> 1 gbm_mod          0.729       0.448          0.65     0.3   
-#> 2 log_mod          0.803       0.598          0.55     0.0816
+#> 1 gbm_mod          0.761       0.516          0.35    -0.3   
+#> 2 log_mod          0.75        0.503          0.45    -0.0784
 ```
 
 2.  `confusion_matrix`
