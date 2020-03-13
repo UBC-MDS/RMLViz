@@ -86,9 +86,9 @@ plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_vali
 
   data <- X_train
   data$Target = y_train
-  df <- tibble::tibble("para" = param_vec,
-                       "train" = rep(0, length(param_vec)),
-                       "valid" = rep(0, length(param_vec)))
+  df <- tibble::tibble(para = param_vec,
+                       train = rep(0, length(param_vec)),
+                       valid = rep(0, length(param_vec)))
 
   model_name <- tolower(model_name)
   param_name <- tolower(param_name)
@@ -159,8 +159,8 @@ plot_train_valid_error <- function(model_name, X_train, y_train, X_valid, y_vali
   }
 
 
-  df <- tidyr::gather(df, "dataset", "error", - "para")
-  ggplot2::ggplot(df, ggplot2::aes("para", "error", color = "dataset")) +
+  df <- tidyr::gather(df, dataset, error, - para)
+  ggplot2::ggplot(df, ggplot2::aes(para, error, color = dataset)) +
     ggplot2::geom_line() +
     ggplot2::labs(x = param_name,
                   y = "Error",
