@@ -30,6 +30,7 @@ then generates a model comparison
 table.
 }
 \examples{
+\dontrun{
 library(RMLViz)
 library(mlbench)
 data(Sonar)
@@ -45,4 +46,5 @@ lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
                        gbm_mod=gbm, log_mod = lm_cf)
+}
 }
