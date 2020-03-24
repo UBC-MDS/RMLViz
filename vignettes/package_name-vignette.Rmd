@@ -32,10 +32,10 @@ Visualization package for ML models.
 
 | Function Name | Input | Output | Description |
 |-------------|-----|------|-----------|
-|model_comparison_table| List of model, X_train, y_train, X_test, y_test, scoring option | Dataframe of model score| Takes in a list of models and the train test data then outputs a table comparing the scores for different models.|
-|confusion_matrix | Model, X_train, y_train, X_test, y_test, predicted_y  | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc)| Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced.|
+|model_comparison_table| train_data, test_data, ... | Dataframe of model score| Takes in training data, testing data, with the target as the last column and fitted models with meaningful names then outputs a table comparing the scores for different models.|
+|confusion_matrix | actual_y, predicted_y, labels, title| Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc)| Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in,other evaluation scoring metrics such as Recall, and precision will also be produced.|
 |plot_train_valid_error| model_name, X_train, y_train, X_test, y_test, param_name, param_vec | Train/validation errors vs. parameter values plot | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation errors vs. parameter values.|
-|plot_roc|model, X_valid, y_valid |ROC plot| Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid) and plots the ROC curve. The ROC curve also produces AUC score.|
+|plot_roc|y_label, predict_proba |ROC plot| Takes in a vector of prediction labels and a vector of prediction probabilities and plots the ROC curve. The ROC curve also produces AUC score.|
 
 
 ## Usage and example
