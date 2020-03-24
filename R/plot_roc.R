@@ -7,9 +7,21 @@
 #'
 #' @return A plot
 #' @examples
-#' plot_roc(c(1,0,0,1,1), c(0.5,0.34,0.89,0.12,0.99))
+#' \dontrun{
+#' library(RMLViz)
+#' set.seed(420)
+#'
+#' num.samples <- 100
+#' weight <- sort(rnorm(n=num.samples, mean=172, sd=29))
+#' bese <- ifelse(test=(runif(n=num.samples) < (rank(weight)/num.samples)),
+#'                yes=1, no=0)
+#'
+#' glm.fit=glm(obese ~ weight, family=binomial)
+#' obese_proba <- glm.fit$fitted.values
+#'
+#' plot_roc(obese, obese_proba)
+#' }
 #' @export
-
 plot_roc <- function(y_label,predict_proba) {
 
   if (!is.vector(y_label) ){
