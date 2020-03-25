@@ -4,8 +4,15 @@
 \alias{plot_train_valid_error}
 \title{plot train/validation errors vs. parameter values}
 \usage{
-plot_train_valid_error(model_name, X_train, y_train, X_valid, y_valid,
-  param_name, param_vec)
+plot_train_valid_error(
+  model_name,
+  X_train,
+  y_train,
+  X_valid,
+  y_valid,
+  param_name,
+  param_vec
+)
 }
 \arguments{
 \item{model_name}{a string of the machine learning model name.
@@ -38,11 +45,23 @@ to try and then plots train/validation errors vs.
 parameter values.
 }
 \examples{
-plot_train_valid_error("knn",
-                       tibble::tibble(a = c(1, 2, 3)),
-                       c(1, 2, 3),
-                       tibble::tibble(a = c(1, 2, 3)),
-                       c(1, 2, 3),
-                       "k",
-                       seq(3))
+\dontrun{
+library(RMLViz)
+data(iris)
+set.seed(123)
+
+split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
+training_set <- subset(iris, split == TRUE)
+valid_set <- subset(iris, split == FALSE)
+
+X_train <- training_set[, -5]
+y_train <- training_set[, 5]
+X_valid <- valid_set[, -5]
+y_valid <- valid_set[, 5]
+
+plot_train_valid_error('knn',
+                       X_train, y_train,
+                       X_valid, y_valid,
+                       'k', seq(50))
+}
 }

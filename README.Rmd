@@ -53,10 +53,10 @@ devtools::install_github("UBC-MDS/RMLViz")
 
 | Function Name | Input | Output | Description |
 |-------------|-----|------|-----------|
-|model_comparison_table| List of model, X_train, y_train, X_test, y_test, scoring option | Dataframe of model score| Takes in a list of models and the train test data then outputs a table comparing the scores for different models.|
-|confusion_matrix | Model, X_train, y_train, X_test, y_test, predicted_y  | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc)| Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced.|
+|model_comparison_table| train_data, test_data, ... | Dataframe of model score| Takes in training data, testing data, with the target as the last column and fitted models with meaningful names then outputs a table comparing the scores for different models.|
+|confusion_matrix | actual_y, predicted_y, labels, title| Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc)| Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted_y array is passed in,other evaluation scoring metrics such as Recall, and precision will also be produced.|
 |plot_train_valid_error| model_name, X_train, y_train, X_test, y_test, param_name, param_vec | Train/validation errors vs. parameter values plot | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation errors vs. parameter values.|
-|plot_roc|model, X_valid, y_valid |ROC plot| Takes in a fitted model, the validation set(X_valid) and the validation set labels(y_valid) and plots the ROC curve. The ROC curve also produces AUC score.|
+|plot_roc|y_label, predict_proba |ROC plot| Takes in a vector of prediction labels and a vector of prediction probabilities and plots the ROC curve. The ROC curve also produces AUC score.|
 
 ## Alignment with R Ecosystems
 
@@ -66,30 +66,30 @@ For all of our functions, there are not existing packages that implement the exa
 
 R version >= 3.6.1 and R packages:
 
-- vctrs,
-- lifecycle,
-- pillar,
-- dplyr
-- tidyr
-- magrittr
-- ggplot2
-- broom
-- pls
-- covr
-- gbm
-- tibble
-- testthat
-- purrr
-- pROC
-- plotROC
-- datasets
-- class
-- rpart
-- randomForest
-- e1071
-- mlbench
-- caTools
-- caret
+- vctrs >= 0.2.0
+- lifecycle >= 0.1.0
+- pillar >= 1.4.2 
+- dplyr >= 0.8.3
+- tidyr >= 1.0.0
+- magrittr >= 1.5
+- ggplot2 >= 3.2.1 
+- broom >= 0.5.2
+- pls >= 2.7.2
+- covr >= 3.4.0
+- gbm >= 2.1.5
+- tibble >= 2.1.3
+- testthat >= 2.3.1
+- purrr >= 0.3.3
+- pROC >= 1.16.1
+- plotROC >= 2.2.1
+- datasets >= 3.6.1
+- class >= 7.3.15
+- rpart >= 4.1.15
+- randomForest >= 4.6.14
+- e1071 >= 1.7.3
+- mlbench >= 2.1.1
+- caTools >= 1.17.1.3
+- caret >= 6.0.85
 
 
 ## Usage and example

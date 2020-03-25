@@ -24,5 +24,21 @@ A plot and a dataframe with scoring metrics
 Implementation based on https://stackoverflow.com/a/59119854
 }
 \examples{
-confusion_matrix(as.factor(c("yes", "no", "yes")), as.factor(c("no", "no", "yes")))
+\dontrun{
+library(RMLViz)
+data(iris)
+
+set.seed(123)
+
+split <- caTools::sample.split(iris$Species, SplitRatio = 0.75)
+training_set <- subset(iris, split == TRUE)
+valid_set <- subset(iris, split == FALSE)
+X_train <- training_set[, -5]
+y_train <- training_set[, 5]
+X_valid <- valid_set[, -5]
+y_valid <- valid_set[, 5]
+
+predict <- class::knn(X_train, X_train, y_train, k = 5)
+confusion_matrix(y_train, predict)
+}
 }

@@ -18,8 +18,21 @@
 #'
 #' @examples
 #' \dontrun{
-#' model_comparison_table(train_set, test_set,
-#' model1 = model_lm, model2 = model_gbm)
+#' library(RMLViz)
+#' library(mlbench)
+#' data(Sonar)
+#'
+#' toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
+#'
+#' train_ind <- caret::createDataPartition(toy_classification_data$Class, p=0.9, list=F)
+#' train_set_cf <- toy_classification_data[train_ind, ]
+#' test_set_cf <- toy_classification_data[-train_ind, ]
+#'
+#' gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
+#' lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
+#'
+#' model_comparison_table(train_set_cf, test_set_cf,
+#'                        gbm_mod=gbm, log_mod = lm_cf)
 #' }
 model_comparison_table <- function(train_data, test_data, ...) {
   if (!is_tibble(train_data)){

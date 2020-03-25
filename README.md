@@ -43,12 +43,12 @@ You can install RMLViz from [GitHub](https://github.com/) with:
 
 ## Functions
 
-| Function Name             | Input                                                                      | Output                                                                  | Description                                                                                                                                                                                                  |
-| ------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| model\_comparison\_table  | List of model, X\_train, y\_train, X\_test, y\_test, scoring option        | Dataframe of model score                                                | Takes in a list of models and the train test data then outputs a table comparing the scores for different models.                                                                                            |
-| confusion\_matrix         | Model, X\_train, y\_train, X\_test, y\_test, predicted\_y                  | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc) | Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted\_y array is passed in, other evaluation scoring metrics such as Recall, and precision will also be produced. |
-| plot\_train\_valid\_error | model\_name, X\_train, y\_train, X\_test, y\_test, param\_name, param\_vec | Train/validation errors vs. parameter values plot                       | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation errors vs. parameter values.                                     |
-| plot\_roc                 | model, X\_valid, y\_valid                                                  | ROC plot                                                                | Takes in a fitted model, the validation set(X\_valid) and the validation set labels(y\_valid) and plots the ROC curve. The ROC curve also produces AUC score.                                                |
+| Function Name             | Input                                                                      | Output                                                                  | Description                                                                                                                                                                                                 |
+| ------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| model\_comparison\_table  | train\_data, test\_data, …                                                 | Dataframe of model score                                                | Takes in training data, testing data, with the target as the last column and fitted models with meaningful names then outputs a table comparing the scores for different models.                            |
+| confusion\_matrix         | actual\_y, predicted\_y, labels, title                                     | Confusion Matrix Plot, Dataframe of various scores (Recall, F1 and etc) | Takes in a trained model with X and y values to produce a confusion matrix visual. If predicted\_y array is passed in,other evaluation scoring metrics such as Recall, and precision will also be produced. |
+| plot\_train\_valid\_error | model\_name, X\_train, y\_train, X\_test, y\_test, param\_name, param\_vec | Train/validation errors vs. parameter values plot                       | Takes in a model name, train/validation data sets, a parameter name and a vector of parameter values to try and then plots train/validation errors vs. parameter values.                                    |
+| plot\_roc                 | y\_label, predict\_proba                                                   | ROC plot                                                                | Takes in a vector of prediction labels and a vector of prediction probabilities and plots the ROC curve. The ROC curve also produces AUC score.                                                             |
 
 ## Alignment with R Ecosystems
 
@@ -60,30 +60,30 @@ insights about machine learning models conveniently.
 
 R version \>= 3.6.1 and R packages:
 
-  - vctrs,
-  - lifecycle,
-  - pillar,
-  - dplyr
-  - tidyr
-  - magrittr
-  - ggplot2
-  - broom
-  - pls
-  - covr
-  - gbm
-  - tibble
-  - testthat
-  - purrr
-  - pROC
-  - plotROC
-  - datasets
-  - class
-  - rpart
-  - randomForest
-  - e1071
-  - mlbench
-  - caTools
-  - caret
+  - vctrs \>= 0.2.0
+  - lifecycle \>= 0.1.0
+  - pillar \>= 1.4.2
+  - dplyr \>= 0.8.3
+  - tidyr \>= 1.0.0
+  - magrittr \>= 1.5
+  - ggplot2 \>= 3.2.1
+  - broom \>= 0.5.2
+  - pls \>= 2.7.2
+  - covr \>= 3.4.0
+  - gbm \>= 2.1.5
+  - tibble \>= 2.1.3
+  - testthat \>= 2.3.1
+  - purrr \>= 0.3.3
+  - pROC \>= 1.16.1
+  - plotROC \>= 2.2.1
+  - datasets \>= 3.6.1
+  - class \>= 7.3.15
+  - rpart \>= 4.1.15
+  - randomForest \>= 4.6.14
+  - e1071 \>= 1.7.3
+  - mlbench \>= 2.1.1
+  - caTools \>= 1.17.1.3
+  - caret \>= 6.0.85
 
 ## Usage and example
 
@@ -94,6 +94,7 @@ R version \>= 3.6.1 and R packages:
 ``` r
 library(RMLViz)
 library(mlbench)
+#> Warning: package 'mlbench' was built under R version 3.6.3
 data(Sonar)
 
 toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
@@ -105,6 +106,7 @@ test_set_cf <- toy_classification_data[-train_ind, ]
 
 ## classification models setup
 gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
+#> Warning: package 'caret' was built under R version 3.6.2
 lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
@@ -112,8 +114,8 @@ model_comparison_table(train_set_cf, test_set_cf,
 #> # A tibble: 2 x 5
 #>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
 #>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
-#> 1 gbm_mod          0.761       0.516          0.35    -0.3   
-#> 2 log_mod          0.75        0.503          0.45    -0.0784
+#> 1 gbm_mod          0.739       0.473          0.5     -0.0101
+#> 2 log_mod          0.745       0.480          0.65     0.271
 ```
 
 2.  `confusion_matrix`
@@ -142,18 +144,18 @@ confusion_matrix(y_train, predict)
 
 <img src="man/figures/README-2-1.png" width="100%" />
 
-    #>                   Sensitivity Specificity Pos Pred Value Neg Pred Value Precision
-    #> Class: setosa       1.0000000   1.0000000           1.00       1.000000      1.00
-    #> Class: versicolor   0.9473684   1.0000000           1.00       0.974359      1.00
-    #> Class: virginica    1.0000000   0.9736842           0.95       1.000000      0.95
-    #>                      Recall       F1 Prevalence Detection Rate Detection Prevalence
-    #> Class: setosa     1.0000000 1.000000  0.3333333      0.3333333            0.3333333
-    #> Class: versicolor 0.9473684 0.972973  0.3333333      0.3157895            0.3157895
-    #> Class: virginica  1.0000000 0.974359  0.3333333      0.3333333            0.3508772
-    #>                   Balanced Accuracy
-    #> Class: setosa             1.0000000
-    #> Class: versicolor         0.9736842
-    #> Class: virginica          0.9868421
+    #>                   Sensitivity Specificity Pos Pred Value Neg Pred Value
+    #> Class: setosa       1.0000000   1.0000000           1.00       1.000000
+    #> Class: versicolor   0.9473684   1.0000000           1.00       0.974359
+    #> Class: virginica    1.0000000   0.9736842           0.95       1.000000
+    #>                   Precision    Recall       F1 Prevalence Detection Rate
+    #> Class: setosa          1.00 1.0000000 1.000000  0.3333333      0.3333333
+    #> Class: versicolor      1.00 0.9473684 0.972973  0.3333333      0.3157895
+    #> Class: virginica       0.95 1.0000000 0.974359  0.3333333      0.3333333
+    #>                   Detection Prevalence Balanced Accuracy
+    #> Class: setosa                0.3333333         1.0000000
+    #> Class: versicolor            0.3157895         0.9736842
+    #> Class: virginica             0.3508772         0.9868421
 
 3.  `plot_train_valid_error`
 
