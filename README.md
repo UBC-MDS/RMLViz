@@ -112,8 +112,8 @@ model_comparison_table(train_set_cf, test_set_cf,
 #> # A tibble: 2 x 5
 #>   model   train_Accuracy train_Kappa test_Accuracy test_Kappa
 #>   <chr>            <dbl>       <dbl>         <dbl>      <dbl>
-#> 1 gbm_mod          0.739       0.473          0.5     -0.0101
-#> 2 log_mod          0.745       0.480          0.65     0.271
+#> 1 gbm_mod          0.771       0.540          0.45     -0.146
+#> 2 log_mod          0.814       0.623          0.45     -0.170
 ```
 
 2.  `confusion_matrix`
