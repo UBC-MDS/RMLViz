@@ -94,7 +94,6 @@ R version \>= 3.6.1 and R packages:
 ``` r
 library(RMLViz)
 library(mlbench)
-#> Warning: package 'mlbench' was built under R version 3.6.3
 data(Sonar)
 
 toy_classification_data <- dplyr::select(dplyr::as_tibble(Sonar), V1, V2, V3, V4, V5, Class)
@@ -106,7 +105,6 @@ test_set_cf <- toy_classification_data[-train_ind, ]
 
 ## classification models setup
 gbm <- caret::train(Class~., train_set_cf, method="gbm", verbose=F)
-#> Warning: package 'caret' was built under R version 3.6.2
 lm_cf <- caret::train(Class~., train_set_cf, method="LogitBoost", verbose=F)
 
 model_comparison_table(train_set_cf, test_set_cf,
