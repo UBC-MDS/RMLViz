@@ -42,7 +42,7 @@ Visualization package for ML models.
 
 1. `model_comparison_table`
 
-``` {r 1, message=FALSE}
+``` {r 1, message=FALSE, warning=FALSE}
 library(RMLViz)
 library(mlbench)
 data(Sonar)
