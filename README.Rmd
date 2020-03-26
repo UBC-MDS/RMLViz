@@ -96,7 +96,7 @@ R version >= 3.6.1 and R packages:
 
 1. `model_comparison_table`
 
-``` {r 1, message=FALSE}
+``` {r 1, message=FALSE, warning=FALSE}
 library(RMLViz)
 library(mlbench)
 data(Sonar)
